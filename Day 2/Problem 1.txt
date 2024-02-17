@@ -6,7 +6,9 @@ Difficulty Level: Medium
 Topics: Linked List, Two Pointer
 
 Approach:
-The code first handles base cases (empty list or single node). Then, it calculates the length of the list to determine the rotation amount. It adjusts 'k' to be within the range of list length (k=k%count). If 'k' becomes 0, no rotation is needed. It finds the new tail node by moving 'count - k' steps from the head. The list is broken just before this new tail, making the sub-list the rotated list. The original tail is found, and it's connected to the original head to complete the rotation. Finally, the new head of the rotated list is returned.
+The code first handles base cases (empty list or single node). Then, it calculates the length of the list to determine the rotation amount. 
+It adjusts 'k' to be within the range of list length (k=k%count). If 'k' becomes 0, no rotation is needed. 
+It finds the new tail node by moving 'count - k' steps from the head. The list is broken just before this new tail, making the sub-list the rotated list. The original tail is found, and it's connected to the original head to complete the rotation. Finally, the new head of the rotated list is returned.
 
 Code:
         ListNode* rotateRight(ListNode* head, int k) {
