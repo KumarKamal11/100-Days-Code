@@ -1,0 +1,40 @@
+2nd Problem:
+
+Problem: 19. Remove Nth node From end of list.
+Problem Link: https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+Difficulty Level:Medium
+Topics: Linked List
+
+Intution:
+
+To solve this question, first, we need to determine the length of the linked list. 
+After obtaining the length, we subtract n from it, which gives us the position of the nth node from the start that we need to remove from the linked list.
+Also we need to handle the edge case when we have to delete the first or last node.
+
+
+Code:
+
+  ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int count = 0;
+        ListNode* temp = head;
+        while (temp != NULL) {
+            count++;
+            temp = temp->next;
+        }
+        count = count - n;
+        if (count == 0) {
+            temp = head;
+            head = head->next;
+            delete temp;
+            return head;
+        }
+        ListNode *curr = head, *prev = NULL;
+        while (count != 0) {
+            prev = curr;
+            curr = curr->next;
+            count = count - 1;
+        }
+        prev->next = curr->next;
+        delete curr;
+        return head;
+    }
