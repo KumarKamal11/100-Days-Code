@@ -6,7 +6,9 @@ Difficulty Level: Easy
 Topics: Linked List
 
 Intution:
-The code Simply determines if a singly linked list is a palindrome by first counting its nodes and finding the midpoint,then it splits the list into two halves,after we reverses the second half. Afterward, it compares corresponding nodes from the first and reversed halves. If any nodes differ, it returns false; otherwise, it returns true.
+The code Simply determines if a singly linked list is a palindrome by first counting its nodes and finding the midpoint,
+then it splits the list into two halves,after we reverses the second half. Afterward, it compares corresponding nodes from
+the first and reversed halves. If any nodes differ, it returns false; otherwise, it returns true.
 
 Code:
    bool isPalindrome(ListNode* head) {
