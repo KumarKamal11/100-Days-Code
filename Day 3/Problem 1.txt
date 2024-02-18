@@ -1,0 +1,48 @@
+Day 3: Problem-1
+
+Problem: 234. Palindrome Linked List
+Problem Link: https://leetcode.com/problems/palindrome-linked-list/description/
+Difficulty Level: Easy
+Topics: Linked List
+
+Intution:
+The code Simply determines if a singly linked list is a palindrome by first counting its nodes and finding the midpoint,then it splits the list into two halves,after we reverses the second half. Afterward, it compares corresponding nodes from the first and reversed halves. If any nodes differ, it returns false; otherwise, it returns true.
+
+Code:
+   bool isPalindrome(ListNode* head) {
+        if(head->next==NULL){
+            return 1;
+        }
+        int count=0;
+        ListNode *temp=head;  // count the total nodes
+        while(temp!=NULL){
+            count++;
+            temp=temp->next;
+        }
+        count=count/2;
+        ListNode *curr=head,*prev=NULL;
+        while(count!=0){ // skipping those nodes
+            prev=curr;
+            curr=curr->next;
+            count=count-1;
+        }
+       prev->next=NULL;
+       ListNode *front; // reversing the second half of linked list,curr point the starts
+       prev=NULL;
+       while(curr!=NULL){
+           front=curr->next;
+           curr->next=prev;
+           prev=curr;
+           curr=front;
+       }
+       //Here we have two list prev is pointing the second list and head is pointing the first list
+      ListNode *temp1=head,*temp2=prev;
+       while(temp1!=NULL){
+           if(temp1->val!=temp2->val){
+               return 0;
+           }
+           temp1=temp1->next;
+           temp2=temp2->next;
+       }
+       return 1;
+    }

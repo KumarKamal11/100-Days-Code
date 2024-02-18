@@ -1,0 +1,34 @@
+Day 3: Problem-2
+
+Problem: Remove every k'th node
+Problem Link: https://www.geeksforgeeks.org/problems/remove-every-kth-node/0
+Difficulty Level: Medium
+Topics: Linked List
+
+Intution:
+As we have to delete every kth node from a singly linked list.We Simply initializes two pointers, curr and prev, to traverse the list. When count reaches K, it deletes the current node, updates pointers, resets count, and continues. The function ensures proper memory management by deleting the node and relinking the list. At the end we returns the modified head of the linked list after removals.
+
+
+Code:
+Node* deleteK(Node *head,int K)
+{ 
+  if(K==1){
+      return NULL;
+  }
+  Node *curr=head, *prev=NULL;
+  int count=1;
+  while(curr!=NULL){
+      if(count==K){  // Delete the node;
+          prev->next=curr->next;
+          delete curr;
+          curr=prev->next;
+          count=1;
+      }
+      else{
+          prev=curr;
+          curr=curr->next;
+          count++;
+      }
+  }
+  return head;
+}
