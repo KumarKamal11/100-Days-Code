@@ -6,10 +6,11 @@ Difficulty Level: Medium
 Topics: Linked List
 
 Intution:
-We maintains two pointers, slow and fast, iterating through the linked list. The slow pointer move by one node at a time while the fast pointer move by two nodes at a time. If there's a loop, eventually the fast pointer will catch up to the slow pointer.
-
-Once the loop is detected, the code resets the slow pointer to the head of the list and moves both pointers at the same speed until they meet again at the point where the loop begins. This identifies the node just before the loop.
-
+We maintains two pointers, slow and fast, iterating through the linked list. 
+The slow pointer move by one node at a time while the fast pointer move by two nodes at a time.
+If there's a loop, eventually the fast pointer will catch up to the slow pointer.
+Once the loop is detected, the code resets the slow pointer to the head of the list and moves both pointers at the same speed until
+they meet again at the point where the loop begins. This identifies the node just before the loop.
 Finally, it traverses the list one more time to find the node just before the loop and breaks the loop by setting its next pointer to NULL. This effectively removes the loop without losing any nodes.
 
 
