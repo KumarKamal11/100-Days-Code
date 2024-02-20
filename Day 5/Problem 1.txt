@@ -1,0 +1,11 @@
+Day 5: Problem-1
+
+Problem: 203. Remove Linked List Elements
+Problem Link: https://leetcode.com/problems/remove-linked-list-elements/description/
+Difficulty Level: Easy
+Topics: Linked List
+
+Intution:
+
+
+Code:
