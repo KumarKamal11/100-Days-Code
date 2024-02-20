@@ -1,0 +1,52 @@
+Day 5: Problem-2
+
+Problem: 160. Intersection of Two linkedList
+Problem Link:https://leetcode.com/problems/intersection-of-two-linked-lists/
+Difficulty Level: Easy
+Topics: Linked List
+
+Intution:
+1.Initialize count1 and count2 to count nodes in headA and headB.
+2.Traverse headA and headB separately using temp and temp1, incrementing counts.
+3.Reset temp and temp1 to the beginning of headA and headB.
+4.Compare counts of headA and headB.
+5.If count1 > count2, move temp forward to equalize lengths.
+6.If count2 > count1, move temp1 forward to equalize lengths.
+7.Start traversing both lists simultaneously with temp and temp1.
+8.Compare nodes pointed by temp and temp1.
+9.If they point to the same node, return that node.
+10.Move both pointers to the next node until one reaches the end.
+11.If traversal completes without finding an intersection, return NULL.
+
+
+Code:
+ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+       int count1=0,count2=0;
+        ListNode *temp=headA,*temp1=headB;
+        while(temp!=NULL){
+            count1++;
+            temp=temp->next;
+        }
+        while(temp1!=NULL){
+            count2++;
+            temp1=temp1->next;
+        }
+        temp=headA;
+        temp1=headB;
+        while (count1>count2){
+            count1--;
+            temp=temp->next;
+        }
+        while(count2>count1){
+            count2--;
+            temp1=temp1->next;
+        }
+        while(temp!=NULL and temp1!=NULL){
+            if(temp==temp1){
+                return temp;
+            }
+            temp=temp->next;
+            temp1=temp1->next;
+        }
+        return NULL;
+    }
