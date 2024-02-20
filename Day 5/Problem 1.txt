@@ -6,6 +6,36 @@ Difficulty Level: Easy
 Topics: Linked List
 
 Intution:
-
+1.Check if the linked list is empty, if so, return it.
+2.If the head node has the target value, move the head to the next node.
+3.Initialize two pointers: prev = NULL and curr = head.
+4.Traverse through the linked list using curr pointer until it reaches NULL.
+5.Inside the loop, if curr's value matches the target:
+   Make prev's next pointer skip curr.
+   Move curr to the next node.
+6.Inside the loop, if curr's value doesn't match the target:
+  Update prev to point to curr.
+  Move curr to the next node.
+7.Return the updated head of the linked list.
 
 Code:
+ ListNode* removeElements(ListNode* head, int val) {
+    if(head==NULL){
+        return head;
+    }
+    while(head!=NULL && head->val==val){
+        head=head->next;
+       }
+       ListNode *prev=NULL,*curr=head;
+       while(curr!=NULL){
+           if(curr->val==val){
+               prev->next=curr->next;
+               curr=curr->next;
+           }
+           else{
+               prev=curr;
+               curr=curr->next;
+           }
+       }
+       return head;
+    }
