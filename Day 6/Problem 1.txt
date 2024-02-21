@@ -1,0 +1,34 @@
+Day 6: Problem-1
+
+Problem:2095. Delete the Middle Node of a Linked List
+Problem Link: https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/description/
+Difficulty Level: Medium
+Topics: Linked List
+
+Intution:
+
+1.Check if the linked list contains only one node.
+2.If it does, return NULL since there is no middle node to delete.
+3.Initialize two pointers, slow and fast, both pointing to the head of the linked list.
+4.Move slow one step at a time and fast two steps at a time until fast reaches the end of the list or the second last node (to handle even and odd number of nodes).
+5.When fast reaches the end or the second last node, slow will be at the middle of the list.
+6.Adjust the pointers to delete the middle node by pointing slow to the node after the middle node.
+7.Return the head of the modified linked list.
+
+Code:
+    ListNode* deleteMiddle(ListNode* head) {
+       if( head->next==NULL){
+           return NULL;
+          }
+          
+       ListNode *slow=head;
+       ListNode *fast=head->next->next;
+
+     
+       while(fast!=NULL && fast->next!=NULL){
+           slow=slow->next;
+           fast=fast->next->next;
+       }
+       slow->next=slow->next->next;
+       return head;
+    }
