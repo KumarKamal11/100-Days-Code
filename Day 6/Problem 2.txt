@@ -2,7 +2,6 @@ Day 6: Problem-2
 
 Problem:Multiply Two Linked List
 Problem Link: https://www.geeksforgeeks.org/problems/multiply-two-linked-lists/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
-
 Difficulty Level: Easy
 Topics: Linked List
 
@@ -11,13 +10,17 @@ Intution:
 In short, My code converts two linked lists to integers after that it multiplies the integers, and then returns the value after Multiplication.
    Steps:
    1.The code first defines two functions: convert and multiplyTwoLists.
-   2.The convert function takes a linked list as input and converts it to an integer. It does this by   iterating over the linked list and multiplying each digit by 10, adding the current digit, and then taking the modulo by a constant value (MOD).
-   3.The multiplyTwoLists function takes two linked lists as input and returns their product. It does this by first converting the two linked lists to integers using the convert function. Then, it multiplies the two integers and returns the modulo by the constant value (MOD).
+   2.The convert function takes a linked list as input and converts it to an integer. It does this by
+     iterating over the linked list and multiplying each digit by 10, adding the current digit, and 
+     then taking the modulo by a constant value (MOD).
+   3.The multiplyTwoLists function takes two linked lists as input and returns their product.
+     It does this by first converting the two linked lists to integers using the convert function.
+     Then, it multiplies the two integers and returns the modulo by the constant value (MOD).
 
 
 
 Code:
-   long long int convert(Node *head){
+long long int convert(Node *head){
     long long int MOD=1000000007;
     long long int num=0;
     Node* temp=head;
