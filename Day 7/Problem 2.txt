@@ -1,0 +1,37 @@
+Day 7: Problem-2
+
+Problem: Find the first node of loop in linked list
+Problem Link: https://www.geeksforgeeks.org/problems/find-the-first-node-of-loop-in-linked-list--170645/0
+Difficulty Level: Easy
+Topics: Linked List
+
+Intution:
+
+We use Floyd cycle detection algorithm
+
+1.Initialize two pointers, slow and fast, pointing to the head of the linked list.
+2.Iterate through the linked list using the two pointers as described above until they meet or the fast pointer reaches the end of the list.
+3.If the fast pointer reaches the end of the list (NULL), there's no loop, so return -1.
+4.If the two pointers meet, it confirms the presence of a loop. Reset one of the pointers to the head.
+5.Move both pointers at the same pace (one step at a time) until they meet again.
+6.Return the node data of the first node where they meet, as this will be the start of the loop.
+
+Code:
+ int findFirstNode(Node* head)
+    {
+       Node* slow=head;
+       Node* fast=head;
+       while(slow!=NULL && fast!=NULL){
+           slow=slow->next;
+           fast=fast->next->next;
+           if(slow==fast){
+               slow=head;
+               while(slow!=fast){
+                   slow=slow->next;
+                   fast=fast->next;
+               }
+               return slow->data;
+           }
+       }
+       return -1;
+    }  

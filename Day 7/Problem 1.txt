@@ -1,0 +1,35 @@
+Day 7: Problem-1
+
+Problem: Reverse a Doubly Linked List
+Problem :https://www.geeksforgeeks.org/problems/reverse-a-doubly-linked-list/0
+Difficulty Level: Easy
+Topics: Linked List
+
+Intution:
+
+The Intution behind the code is that it maintains three pointers: front, prev, and temp and follow the below steps.
+
+1.Initialize prev as NULL.
+2.Traverse the list:
+3.Store the next node in front.
+4.Reverse pointers for the current node temp.
+5.Move prev to temp.
+6.Move temp to front.
+7.Return prev, which now points to the new head of the reversed list.
+
+Code:
+
+ Node* reverseDLL(Node * head)
+    {
+        Node* front = NULL;
+        Node* prev = NULL;
+        Node* temp = head;
+        while(temp!=NULL) {
+            front = temp->next;
+            temp->prev = front;
+            temp->next = prev;
+            prev= temp;
+            temp = front;
+        }
+        return prev;
+    }
