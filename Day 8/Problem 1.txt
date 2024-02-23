@@ -1,0 +1,33 @@
+Day 8: Problem-1
+
+Problem: Insert an Element at the Bottom of a Stack
+Problem Link: https://www.geeksforgeeks.org/problems/insert-an-element-at-the-bottom-of-a-stack/1?page=2&category=Stack&difficulty=Easy&sortBy=submissions
+Difficulty Level: Easy
+Topics: Stack
+
+Intution:
+
+As We're given a stack st of integers and an element x that needs to be inserted at the bottom of the stack.
+
+1.To achieve this, we use an additional temporary stack temp.
+2.First, we iterate through the original stack st and transfer all its elements to the temp stack.
+3.Once all elements are moved to temp, we push the new element x onto the original stack st. 
+4.Now, x is at the bottom of the stack st.
+5.Finally,we transfer all the elements back from temp to st. This restores the original order of elements in the stack.
+6.The modified stack st is then returned.
+
+Code:
+ stack<int> insertAtBottom(stack<int> st,int x){
+        stack<int> temp;
+        while(!st.empty()){
+            temp.push(st.top());
+            st.pop();
+        }
+        st.push(x);
+        while(!temp.empty()){
+            st.push(temp.top());
+            temp.pop();
+        }
+        return st;
+    }
+ 
