@@ -10,8 +10,11 @@ Approach:
 For each character in the string:
 1.If it's an opening bracket,it is pushed onto the stack.
 2.If it's a closing bracket,it checks if the stack is empty.
-3.If the stack is empty, it means there is no corresponding opening bracket for this closing bracket, so a move is required. Otherwise, it pops an opening bracket from the stack, indicating a valid pair.
-4.At the end, the number of remaining bracket in the stack represents the number of opening bracket without corresponding closing bracket. The number of moves required to balance them is the sum of this count and the count of closing bracket without corresponding opening brackets encountered earlier.
+3.If the stack is empty, it means there is no corresponding opening bracket for this closing bracket,
+  so a move is required. Otherwise, it pops an opening bracket from the stack, indicating a valid pair.
+4.At the end, the number of remaining bracket in the stack represents the number of opening bracket without corresponding closing bracket.
+  The number of moves required to balance them is the sum of this count and the count of closing bracket without corresponding opening brackets
+  encountered earlier.
 5.We return sum as the minimum number of moves required.
 
 Code:
