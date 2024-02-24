@@ -2,7 +2,9 @@ Day 8: Problem-1
 
 Problem: Make the array beautiful
 
-Given an array of negative and non-negative integers. You have to make the array beautiful. An array is beautiful if two adjacent integers, arr[i] and arr[i+1] are either negative or non-negative. And you can do the following operation any number of times until the array becomes beautiful.
+Given an array of negative and non-negative integers. You have to make the array beautiful.
+An array is beautiful if two adjacent integers, arr[i] and arr[i+1] are either negative or non-negative.
+And you can do the following operation any number of times until the array becomes beautiful.
 
 Problem Link:https://www.geeksforgeeks.org/problems/make-the-array-beautiful--170647/1
 Difficulty Level:Easy
