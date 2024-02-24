@@ -1,0 +1,61 @@
+Day 8: Problem-2
+
+Problem:844. Backspace String Compare
+
+Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
+Note that after backspacing an empty text, the text will continue empty.
+
+Problem Link:https://leetcode.com/problems/backspace-string-compare/description/
+Difficulty Level:Easy
+Topics: Stack
+
+Approach:
+1.Define a function named convert that takes a string str as input.
+2.Initialize an empty stack and an empty string ans.
+3.Iterate through each character in the input string str.
+4.If the current character is a backspace ('#'):
+5.If the stack is empty, continue to the next character.
+6.Otherwise, pop the top character from the stack.
+7.If the current character is not a backspace, push it onto the stack.
+8.After iterating through all characters, construct the resulting string ans by popping characters from the stack and appending them to the front of ans.
+9.Return the resulting string ans.
+10.In main function Initialize empty strings str1 and str2. .
+11.Call the convert function with input string s and assign the result to str1.
+12.Call the convert function with input string t and assign the result to str2.
+13.Compare str1 and str2.
+14.If str1 is equal to str2, return true.
+15.Otherwise, return false.
+
+Code:
+
+ string convert(string str){
+      stack<char>st;
+      string ans="";
+        for(int i=0;i<str.length();i++){
+            if(str[i]=='#'){
+                if(st.empty()){
+                    continue;
+                }
+                else{
+                st.pop();
+            }
+            }
+            else{
+                st.push(str[i]);
+            }
+        }
+        while(!st.empty()){
+            char c=st.top();
+            ans=ans+c;
+            st.pop();
+        }
+        return ans;
+    }
+    bool backspaceCompare(string s, string t) {
+       string str1="";
+       string str2="";
+       str1=convert(s);
+       str2=convert(t);
+
+       return str1==str2;
+   }
