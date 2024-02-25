@@ -2,7 +2,9 @@ Day 10: Problem-1
 
 Problem:
 
-Tom is a string freak. He has got sequences of  n words to manipulate. If in a sequence, two same words come together then hell destroy each other. He wants to know the number of words left in the sequence after this pairwise destruction.
+Tom is a string freak. He has got sequences of  n words to manipulate.
+If in a sequence, two same words come together then hell destroy each other. 
+He wants to know the number of words left in the sequence after this pairwise destruction.
 
 Problem Link:https://www.geeksforgeeks.org/problems/string-manipulation3706/1?page=1&difficulty%5B%5D=0&category%5B%5D=Stack&sortBy=submissions
 Difficulty Level:Easy
