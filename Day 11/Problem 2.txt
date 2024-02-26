@@ -1,0 +1,45 @@
+Day 11: Problem-2
+
+Problem: 1047.Remove All Adjacent Duplicates In String
+
+You are given a string s consisting of lowercase English letters.
+A duplicate removal consists of choosing two adjacent and equal letters and removing them.
+We repeatedly make duplicate removals on s until we no longer can.
+Return the final string after all such duplicate removals have been made.
+It can be proven that the answer is unique.
+
+Problem Link:https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/description/
+Difficulty Level:easy
+Topics: String,Stack
+
+Approach:
+1.Create a stack to store letters of string.
+2.Iterate through the sequence of letters.
+3.If the stack is empty, push the current letter onto the stack.
+4.If the current letter is different from the top letter of the stack, push it onto the stack.
+5.If the current letter is the same as the top letter of the stack, pop the top letter.
+6.After processing all letters, pop the all letters from stack which is remaining.
+7.After popping concatenate the letters in the string and return the string as ans.
+
+Code:
+   string removeDuplicates(string s) {
+        stack<char>st;
+        string ans="";
+        for(int i=0;i<s.length();i++){
+            if(st.empty()){
+                st.push(s[i]);
+            }
+            else if(st.top()==s[i]){
+                 st.pop();
+            }
+            else{
+                st.push(s[i]);
+            }
+        }
+        while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
