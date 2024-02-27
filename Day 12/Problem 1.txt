@@ -1,0 +1,45 @@
+Day 12: Problem-1
+
+Problem:2390. Removing Stars From a String
+
+You are given a string s, which contains stars *.In one operation, you can:
+1.Choose a star in s.
+2.Remove the closest non-star character to its left, as well as remove the star itself.
+Return the string after all stars have been removed.
+
+Problem Link:https://leetcode.com/problems/removing-stars-from-a-string/description/
+Difficulty Level:Medium
+Topics: string,Stack
+
+Approach:
+
+1.Initialize an empty stack st to keep track of non-star characters.
+2.Initialize an empty string ans to store the resultant string.
+3.Iterate through each character c in the input string s.
+4.If c is not a star, push it onto the stack st.
+5.If c is a star, pop the top character from the stack st.
+6.Continue this process until the end of the input string is reached.
+7.Construct the resultant string by popping characters from the stack st.
+8.Reverse the resultant string ans.
+9.Return the reversed resultant string ans.
+
+Code:
+   
+ string removeStars(string s) {
+       stack<char>st;
+       string ans="";
+       for(int i=0;i<s.length();i++){
+           if(s[i]!='*'){
+               st.push(s[i]); 
+            }
+            else{
+            st.pop();
+           }
+       }
+       while(!st.empty()){
+           ans+=st.top();
+           st.pop();
+       }
+       reverse(ans.begin(),ans.end());
+       return ans; 
+    }
