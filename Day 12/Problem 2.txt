@@ -1,0 +1,62 @@
+Day 12: Problem-2
+
+Problem: 682.Baseball Ball
+
+You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record.
+You are given a list of strings operations, where operations[i] is the ith operation you must apply to the record and is one of the following:
+An integer x.
+Record a new score of x.
+'+'.
+Record a new score that is the sum of the previous two scores.
+'D'.
+Record a new score that is the double of the previous score.
+'C'.
+Invalidate the previous score, removing it from the record.
+Return the sum of all the scores on the record after applying all the operations.
+The test cases are generated such that the answer and all intermediate calculations fit in a 32-bit integer and that all operations are valid.
+
+Problem Link:https:https://leetcode.com/problems/baseball-game/description/
+Difficulty Level:Easy
+Topics: Array,Stack
+
+Approach:
+The code uses a stack to keep track of the scores. It iterates through the operations list, and for each operation:
+1.If it's a "+", it pops the top two scores from the stack, calculates their sum, pushes the top score back onto the stack, and pushes the sum onto the stack.
+2.If it's a "D", it duplicates the top score on the stack and pushes the result onto the stack.
+3.If it's a "C", it removes the top score from the stack.
+4.If it's an integer, it converts it to an integer and pushes it onto the stack.
+5.Finally, it sums up all the scores remaining in the stack and returns the total sum.
+
+Code:
+    int calPoints(vector<string>& operations) {
+        stack<int>st;
+        int ans=0;
+        for(int i=0;i<operations.size();i++){
+             if(operations[i]=="+"){
+                int temp=st.top();
+                st.pop();
+                int temp1=st.top();
+                int temp2=temp+temp1;
+                st.push(temp);
+                st.push(temp2);
+            }
+            else if(operations[i]=="D"){
+                int temp=st.top();
+                temp*=2;
+                st.push(temp);
+            }
+            else if(operations[i]=="C"){
+               st.pop();
+            }
+           else 
+           {
+            int temp= stoi(operations[i]);
+            st.push(temp);
+           }
+        }
+      while(!st.empty()){
+          ans+=st.top();
+          st.pop();
+      }
+      return ans;
+    }
