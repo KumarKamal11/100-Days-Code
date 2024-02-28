@@ -1,0 +1,37 @@
+Day 13: Problem-1
+
+Problem:Next Greater Element 2
+
+Given a circular integer array arr of size N (i.e ., the next element of arr [N-1] is arr[0] ), return the next greater number for every element in arr.
+The next greater element of a number x is the first greater number to its traversing order next in the array, which means you could search circularly 
+to find its next greater number. If it doesn't exist, return -1 for this number.
+
+Problem Link: https://www.geeksforgeeks.org/problems/next-greater-element-2/1
+Difficulty Level:Medium
+Topics: Array,Stack
+
+Approach:
+
+The approach is very simple it is related to the previous problem.The slight modification in the question which is given ,that we can
+search it circularly.One simple Approach is to create another array which is copy of the given array and apply the same logic of finding 
+the next greater element,but this approach will take an extra space of O(N).
+
+To reduce the space we can just made a slight change which is we can run the loop until (2*n-1) so that we can traverse the whole array in
+circular manner,and change the iterator i to i%n so that we can land at the coorect position.After follow these steps we can jsut implement
+the same logic of the previous problem and we can find our ans.
+
+Code:   
+vector<int> nextGreaterElement(int n, vector<int>& arr) {
+        stack<int>st;
+        vector<int>ans(n,-1);
+        for(int i=0;i<2*n-1;i++){
+            while(!st.empty() && arr[st.top()]<arr[i%n]){
+                ans[st.top()]=arr[i%n];
+                st.pop();
+            }
+            if(i<n){
+            st.push(i);
+            }
+        }
+        return ans;
+    }
