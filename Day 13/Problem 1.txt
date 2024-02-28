@@ -2,10 +2,11 @@ Day 13: Problem-1
 
 Problem:Next Greater Element
 
-Given an array arr[ ] of size N having elements, the task is to find the next greater element
+Given an array arr[] of size N having elements, the task is to find the next greater element
 for each element of the array in order of their appearance in the array. 
 Next greater element of an element in the array is the nearest element on the right which is greater than the current element.
-If there does not exist next greater of current element, then next greater element for current element is -1. For example, next greater of the last element is always -1.
+If there does not exist next greater of current element, then next greater element for current element is -1. For example,
+next greater of the last element is always -1.
 
 Problem Link: https://www.geeksforgeeks.org/problems/next-larger-element-1587115620/1
 Difficulty Level:Medium
@@ -19,7 +20,9 @@ decreasing sequence of elements in the stack, where each element in the stack is
 1.Initialize a result vector ans of size n with all elements set to -1. This will hold the next greater elements for each element of the input array.
 2.Use a stack st to keep track of indices of elements from the input array.
 3.Iterate through each element of the input array.
-4.For each element arr[i], while the stack is not empty and the element at the top of the stack is smaller than arr[i], update the result vector ans at the index corresponding to the top element's index from the stack with the value arr[i], indicating that arr[i] is the next greater element for that element.
+4.For each element arr[i], while the stack is not empty and the element at the top of the stack is smaller than arr[i]
+update the result vector ans at the index corresponding to the top element's index from the stack with the value arr[i],
+indicating that arr[i] is the next greater element for that element.
 4.Push the current index i onto the stack.
 5.After iterating through all elements, return the result vector ans containing the next greater elements for each element in the input array.
 
