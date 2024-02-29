@@ -1,0 +1,51 @@
+Day 14: Problem-2
+
+Problem: Get min at pop
+
+Now, we'll try to solve a famous stack problem. You are given an array A of size N.
+You need to first push the elements of the array into a stack and then print minimum 
+in the stack at each pop until stack becomes empty.
+
+
+Problem Link: https://www.geeksforgeeks.org/problems/get-min-at-pop/0
+Difficulty Level:Easy
+Topics:Stack
+
+Approach:
+1.Initialize an empty stack st to hold the elements from the array.
+2.Iterate through the array arr.
+3.For each element arr[i], compare it with the current minimum element in the stack.
+4.If arr[i] is smaller, set minm to arr[i], otherwise set it to the top element of the stack.
+5.Push minm onto the stack.
+6.After pushing all elements from the array onto the stack, we have a stack where each element is the minimum among the elements below it in the stack.
+7.When popping elements from the stack, the top of the stack will always contain the minimum among the remaining elements.
+8.So, while the stack is not empty, print the top element (which is the minimum), and then pop it.
+9.Repeat until the stack becomes empty.
+
+Code:
+  stack<int> _push(int arr[],int n)
+{
+   // your code here
+   stack<int>st;
+   int minm=0;
+   for(int i=0;i<n;i++){
+       if(i==0){
+           st.push(arr[i]);
+       }
+       else{
+          minm=min(arr[i],st.top());
+          st.push(minm);
+       }
+   }
+   return st;
+}
+
+//Function to print minimum value in stack each time while popping.
+void _getMinAtPop(stack<int>s)
+{
+    // your code here
+    while(!s.empty()){
+        cout<<s.top()<<" ";
+        s.pop();
+    }
+}
