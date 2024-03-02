@@ -1,0 +1,49 @@
+Day 16: Problem-2
+
+Problem:1544. Make the string great.
+
+Given a string s of lower and upper case English letters.A good string is a string which doesn't have two adjacent characters s[i] and s[i + 1] where:
+0 <= i <= s.length - 2 . s[i] is a lower-case letter and s[i + 1] is the same letter but in upper-case or vice-versa.To make the string good, you can 
+choose two adjacent characters that make the string bad and remove them. You can keep doing this until the string becomes good.
+Return the string after making it good. The answer is guaranteed to be unique under the given constraints.
+Notice that an empty string is also good.
+
+Problem Link:https://leetcode.com/problems/make-the-string-great/
+Difficulty Level:Easy
+Topics: Stack
+
+Approach:
+1.Initialize an empty string ans to store the final result.
+2.Initialize a stack st to help in checking and removing adjacent characters that make the string bad.
+3.Iterate through each character in the input string s.
+4.If the stack is empty, push the current character onto the stack.
+5.If the stack is not empty and the current character matches the top of the stack in opposite case
+(e.g., lowercase matches uppercase and vice versa), pop the top element from the stack, as it makes the string bad.
+6.If the current character doesn't match with the top of the stack, push it onto the stack.
+7.After processing all characters in the input string, construct the final result by popping characters from the stack and appending them to ans.
+8.Reverse the ans string to get the correct order of characters.
+9.Return the ans string, which represents the string after making it good.
+
+Code:
+ string makeGood(string s) {
+      string ans="";
+      stack<char>st;
+      for(int i=0;i<s.size();i++){
+          if(st.empty()){
+              st.push(s[i]);
+          }
+          else if(st.top()==s[i]-32 || st.top()==s[i]+32){
+             st.pop();
+          }
+          else{
+              st.push(s[i]);
+          }
+       }
+       while(!st.empty()){
+           ans+=st.top();
+           st.pop();
+       }
+       reverse(ans.begin(),ans.end());
+       return ans;
+    }
+};
