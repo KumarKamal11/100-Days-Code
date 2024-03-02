@@ -1,0 +1,47 @@
+Day 16: Problem-1
+
+Problem:1598. Crawler Log Folder
+
+The Leetcode file system keeps a log each time some user performs a change folder operation.
+The operations are described below:
+1. "../" : Move to the parent folder of the current folder. (If you are already in the main folder, remain in the same folder).
+2. "./" : Remain in the same folder.
+3. "x/" : Move to the child folder named x (This folder is guaranteed to always exist).
+You are given a list of strings logs where logs[i] is the operation performed by the user at the ith step.
+The file system starts in the main folder, then the operations in logs are performed.
+Return the minimum number of operations needed to go back to the main folder after the change folder operations.
+
+
+Problem Link:https://leetcode.com/problems/crawler-log-folder/description/
+Difficulty Level:Easy
+Topics: Stack
+
+Approach:
+1.Initialize a variable depth to keep track of the current depth in the file system.
+Iterate through each operation in the logs.
+2.Check if the operation is to remain in the same folder, denoted by "./". If so, continue to the next operation.
+3.Check if the operation is to move to the parent folder, denoted by "../".
+4.Decrement the depth variable to indicate moving up one level in the file system.
+5.Ensure that depth does not become negative by setting it to 0 if it does.
+6.If the operation is to move to a child folder, denoted by "x/", increment the depth variable to indicate moving down one level in the file system.
+7.After iterating through all operations, return the final depth value, which represents the minimum number of operations needed to go back to the main folder.
+
+Code:
+  int minOperations(vector<string>& logs) {
+       int depth=0;
+       for(int i=0;i<logs.size();i++){
+           if(logs[i]=="./"){
+               continue;
+           }
+           else if(logs[i]=="../"){
+               depth--;
+               if(depth<0){
+                   depth=0;
+               }
+           }
+           else{
+               depth++;
+           }
+        }
+        return depth;  
+    }
