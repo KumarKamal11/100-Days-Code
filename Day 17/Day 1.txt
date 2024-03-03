@@ -1,0 +1,47 @@
+Day 17: Problem-1
+
+Problem: 2130. Maximum Twin Sum of a Linked List
+
+In a linked list of size n, where n is even, the ith node (0-indexed) of the linked list is known as the twin of the (n-1-i)th node, if 0 <= i <= (n / 2) - 1.
+For example, if n = 4, then node 0 is the twin of node 3, and node 1 is the twin of node 2. These are the only nodes with twins for n = 4.
+The twin sum is defined as the sum of a node and its twin.
+Given the head of a linked list with even length, return the maximum twin sum of the linked list.
+
+Problem Link:
+Difficulty Level:Easy
+Topics: Stack
+
+Approach:
+1.Initialize a stack to store the values of the linked list nodes.
+2.Initialize a variable ans to store the maximum twin sum, initially set to 0.
+3.Create a pointer temp and set it to the head of the linked list.
+4.Traverse the linked list using a while loop until temp reaches the end (NULL).
+5.Inside the loop, push the value of the current node (temp->val) onto the stack.
+6.Move temp to the next node.
+7.Reset temp to the head of the linked list for the next traversal.
+8.Traverse the linked list again with another while loop, this time using head pointer.
+9.Inside this loop, calculate the twin sum of the current node and its corresponding twin from the stack.
+10.Update ans with the maximum between the current ans and the calculated twin sum.
+11.Pop the top element from the stack.
+12.Move head to the next node.
+13.Repeat steps 9-12 until all nodes in the linked list are processed.
+14.Return the maximum twin sum stored in ans.
+
+
+Code:
+  int pairSum(ListNode* head) {
+        stack<int>st;
+        int ans=0;
+        ListNode* temp=head;
+        while(temp!=NULL){
+            st.push(temp->val);
+            temp=temp->next;
+        }
+        while(head!=NULL){
+            int t=st.top()+head->val;
+            ans=max(ans,t);
+            st.pop();
+            head=head->next;
+        }
+        return ans;
+    }
