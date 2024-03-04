@@ -1,0 +1,56 @@
+Day 18: Problem-1
+
+Problem: 654. Maximum Binary Tree
+
+You are given an integer array nums with no duplicates. A maximum binary tree can be built recursively from nums using the following algorithm:
+Create a root node whose value is the maximum value in nums.Recursively build the left subtree on the subarray prefix to the left of the maximum value.Recursively build the right subtree on the subarray suffix to the right of the maximum value.Return the maximum binary tree built from nums.
+
+Problem Link:https://leetcode.com/problems/maximum-binary-tree/description/
+Difficulty Level:Medium
+Topics: Tree,Stack
+
+Approach:
+
+The Approach is very Simple,the code recursively divides the array based on the maximum element, constructing the left and right subtrees until it builds the entire maximum binary tree.
+
+1.The findMax function iterates through the array to find the index of the  maximum element within a specified range (start to end).
+
+2.The NewTree function constructs the maximum binary tree recursively:
+If start becomes greater than end, it returns NULL, indicating an empty subtree.
+If start equals end, it creates a new leaf node with the value at that index in nums.
+Otherwise, it finds the index of the maximum element within the current range and creates a new node with that value.
+It then recursively constructs the left subtree using the range from start to idx - 1 and the right subtree using the range from idx + 1 to end.
+3.Finally, the constructMaximumBinaryTree function initializes the construction process by calling NewTree with the entire array range and returns the root of the constructed maximum binary tree.
+
+
+Code:
+    int findMax(vector<int>nums,int start,int end){
+        int max=INT_MIN;
+        int indx=-1;
+        for(int i=start;i<=end;i++){
+            if(nums[i]>max){
+                max=nums[i];
+                indx=i;
+            }
+        }
+        return indx;
+    }
+    TreeNode* NewTree(vector<int>nums,int start,int end){
+        if(start>end){
+            return NULL;
+        }
+        if(start==end){
+            return new TreeNode(nums[start]);
+        }
+        int idx=findMax(nums,start,end);
+        TreeNode* root=new TreeNode(nums[idx]);
+        root->left=NewTree(nums,start,idx-1);
+        root->right=NewTree(nums,idx+1,end);
+        return root;
+    }
+    TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
+        int start=0;
+        int end=nums.size()-1;
+        TreeNode* root=NewTree(nums,start,end);
+        return root;
+    }
