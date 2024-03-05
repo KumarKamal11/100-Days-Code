@@ -1,0 +1,57 @@
+Day 19: Problem-2
+
+Problem:1750. Minimum Length of String After Deleting Similar Ends.
+
+Given a string s consisting only of characters 'a', 'b', and 'c'.
+You are asked to apply the following algorithm on the string any number of times:
+1.Pick a non-empty prefix from the string s where all the characters in the prefix are equal.
+2.Pick a non-empty suffix from the string s where all the characters in this suffix are equal.
+3.The prefix and the suffix should not intersect at any index.
+4.The characters from the prefix and suffix must be the same.
+5.Delete both the prefix and the suffix.
+6.Return the minimum length of s after performing the above operation any number of times (possibly zero times).
+
+Problem Link:https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/?envType=daily-question&envId=2024-03-05
+Difficulty Level:Medium
+Topics: Stack
+
+Approach:
+ The Simple Approach is we can traverse characters from the start and end of the string, 
+ removing matching prefixes and suffixes until no further matching pairs can be found.
+ Finally, it calculates and returns the remaining length of the string.
+
+Steps:
+1.We use two pointer left and right.
+2.Set left pointer to the start of the string and right pointer to the end.
+3.Run the Loop while left pointer is less than right pointer.
+4.Check if characters at left and right pointers are equal.
+If they are: Move left pointer to the right until different character or intersects with right pointer.
+Move right pointer to the left until different character or intersects with left pointer.
+5.Increment left pointer and decrement right pointer.
+6.Calculate the difference between right and left pointers plus 1.
+7.If the difference is negative, return 0.
+8.Otherwise, return the calculated difference as the minimum length.
+
+Code:
+ int minimumLength(string s) {
+        int left=0,right=s.length()-1;
+        while(left<right){
+            if(s[left]==s[right]){
+                while(s[left]==s[left+1] && left<right){
+                    left++;
+                }
+                while(s[right]==s[right-1] && left<right){
+                    right--;
+                }
+                left++,right--;
+            }
+            else{
+              break;
+            }
+        }
+        int diff=right-left+1;
+        if(diff<0){
+            return 0;
+        }
+        return diff;
+    }
