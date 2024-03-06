@@ -10,13 +10,24 @@ Topics: Stack
 
 Approach:
     
-The Simple Intution behind the code is to use two stacks, st1 and st2, where st1 stores the actual elements pushed into the stack, and st2 stores the minimum elements corresponding to the elements in st1.The key idea behind achieving constant-time retrieval of the minimum element is to maintain a separate stack (st2) to keep track of the minimum element at any given point. By doing this, the minimum element can be retrieved in O(1) time complexity without needing to traverse the entire stack.
+The Simple Intution behind the code is to use two stacks, st1 and st2, where st1 stores the actual elements pushed into the stack,
+and st2 stores the minimum elements corresponding to the elements in st1.The key idea behind achieving constant-time retrieval of 
+the minimum element is to maintain a separate stack (st2) to keep track of the minimum element at any given point. By doing this,
+the minimum element can be retrieved in O(1) time complexity without needing to traverse the entire stack.
 
-1.push(int x): When pushing a new element onto the stack, it checks if st1 is empty. If it is, it means the stack is empty, so it directly pushes the new element x onto both st1 and st2. If st1 is not empty, it pushes the new element x onto st1, and compares it with the top element of st2. It then pushes the minimum of the two onto st2.
+1.push(int x): When pushing a new element onto the stack, it checks if st1 is empty.
+If it is, it means the stack is empty, so it directly pushes the new element x onto both st1 and st2.
+If st1 is not empty, it pushes the new element x onto st1, and compares it with the top element of st2.
+It then pushes the minimum of the two onto st2.
 
-2.pop(): This function first checks if st1 is empty. If it is, it means the stack is empty, so it returns -1 indicating an error. Otherwise, it pops the top element from st1 and st2 to maintain synchronization. It returns the popped element, which is essentially the top element of the stack.
+2.pop(): This function first checks if st1 is empty. If it is, it means the stack is empty,
+so it returns -1 indicating an error. Otherwise, it pops the top element from st1 and st2 
+to maintain synchronization. It returns the popped element, which is essentially the top element of the stack.
 
-3.getMin(): This function returns the minimum element from the stack. It simply returns the top element of st2, which stores the minimum elements corresponding to the elements in st1. If st2 is empty, it means the stack is empty, and -1 is returned indicating an error.
+3.getMin(): This function returns the minimum element from the stack. 
+It simply returns the top element of st2, which stores the minimum elements
+corresponding to the elements in st1. If st2 is empty, it means the stack is
+empty, and -1 is returned indicating an error.
 
 Code:
     class Solution{
