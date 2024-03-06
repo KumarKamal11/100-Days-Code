@@ -1,0 +1,57 @@
+Day 20: Problem-1
+
+Problem:Get minimum element from stack
+
+You are given N elements and your task is to Implement a Stack in which you can get a minimum element in O(1) time.
+
+Problem Link:https://www.geeksforgeeks.org/problems/get-minimum-element-from-stack/1?utm_source=geeksforgeeks&utm_medium=article_practice_tab&utm_campaign=article_practice_tab
+Difficulty Level:Medium
+Topics: Stack
+
+Approach:
+    
+The Simple Intution behind the code is to use two stacks, st1 and st2, where st1 stores the actual elements pushed into the stack, and st2 stores the minimum elements corresponding to the elements in st1.The key idea behind achieving constant-time retrieval of the minimum element is to maintain a separate stack (st2) to keep track of the minimum element at any given point. By doing this, the minimum element can be retrieved in O(1) time complexity without needing to traverse the entire stack.
+
+1.push(int x): When pushing a new element onto the stack, it checks if st1 is empty. If it is, it means the stack is empty, so it directly pushes the new element x onto both st1 and st2. If st1 is not empty, it pushes the new element x onto st1, and compares it with the top element of st2. It then pushes the minimum of the two onto st2.
+
+2.pop(): This function first checks if st1 is empty. If it is, it means the stack is empty, so it returns -1 indicating an error. Otherwise, it pops the top element from st1 and st2 to maintain synchronization. It returns the popped element, which is essentially the top element of the stack.
+
+3.getMin(): This function returns the minimum element from the stack. It simply returns the top element of st2, which stores the minimum elements corresponding to the elements in st1. If st2 is empty, it means the stack is empty, and -1 is returned indicating an error.
+
+Code:
+    class Solution{
+    stack<int>st1;
+    stack<int>st2;
+    public:
+    
+       /*returns min element from stack*/
+       int getMin(){
+           if(st2.empty()){
+               return -1;
+           }
+            return st2.top();
+        }
+       
+       /*returns poped element from stack*/
+       int pop(){
+           if(st1.empty()){
+               return -1;
+           }
+               int minEle=st1.top();
+               st1.pop();
+               st2.pop();
+               return minEle;
+           }
+       
+       /*push element x into the stack*/
+       void push(int x){
+           if(st1.empty()){
+               st1.push(x);
+               st2.push(x);
+           }
+           else{
+               st1.push(x);
+               st2.push(min(x,st2.top()));
+           }
+       }
+};
