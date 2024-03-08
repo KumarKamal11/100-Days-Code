@@ -1,0 +1,34 @@
+Day 22: Problem-1
+
+Problem:387. First Unique Character in a String
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+Problem Link:https://leetcode.com/problems/first-unique-character-in-a-string/description/
+Topics: String
+
+Approach:
+1.We can solve this Question by creating an unordered map mp, which will store the frequency of each character in the input string s.
+2.It iterates through the input string s, incrementing the count of each character encountered in the map mp.
+3.After counting all characters, the function initializes a variable c with -1. This variable will store the index of the first non-repeating character.
+4.It iterates through the string s again. For each character, it checks if its frequency in the map is equal to 1.
+If it is, it means that the character is non-repeating.
+5.If a non-repeating character is found, the function updates the variable c with the index of this character and breaks out of the loop.
+This ensures that the function returns the index of the first non-repeating character.
+6.Finally, the function returns the value of c, which either holds the index of the first non-repeating character or -1 if no such character exists.
+
+Code:
+   int firstUniqChar(string s) {
+        unordered_map<char,int>mp;
+        for(int i=0;i<s.size();i++){
+            mp[s[i]]++;
+        }
+        int c=-1;
+        for(int i=0;i<s.size();i++){
+            if(mp[s[i]]==1){
+               c=i;
+               break;
+            }
+        }
+        return c;
+    }
