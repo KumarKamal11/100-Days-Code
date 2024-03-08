@@ -1,0 +1,43 @@
+Day 22: Problem-2
+
+Problem:Generate Binary Numbers
+Given a number N. The task is to generate and print all binary numbers with decimal values from 1 to N.
+
+Problem https://www.geeksforgeeks.org/problems/generate-binary-numbers-1587115620/0
+Topics: String
+
+Approach:
+The simple Approach is to iterates through each decimal number from 1 to N,
+converts it into binary, and stores the binary representation as strings in a vector.
+Finally, it returns this vector containing all the binary numbers.
+
+1.Declare a vector of strings named ans to store the generated binary numbers.
+2.Iterate through each decimal number from 1 to N using a for loop.
+3.For each decimal number i, convert it into its binary representation.
+4.Within the loop, initialize a string temp1 to store the binary representation of the current decimal number.
+5.While the decimal number num is not zero, perform the following steps:
+6.Get the remainder of num divided by 2 (which is the binary equivalent bit).
+7.Convert the remainder to a string using to_string() and append it to the temp1 string.
+8.Divide num by 2 to move to the next binary digit.
+9.Reverse the string temp1 to get the correct binary representation.
+10.Push the generated binary string temp1 into the ans vector.
+11.After processing all decimal numbers from 1 to N, return the vector ans containing all the generated binary numbers.
+
+Code:
+vector<string> generate(int n)
+{
+	vector<string>ans;
+	
+	for(int i=1;i<=n;i++){
+	    int num=i;
+	    string temp1="";
+	    while(num!=0){
+	        temp1=temp1+to_string(num%2);
+	        num=num/2;
+	    }
+	    reverse(temp1.begin(),temp1.end());
+	    ans.push_back(temp1);
+   }
+   return ans;
+}
+
