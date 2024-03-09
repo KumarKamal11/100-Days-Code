@@ -1,0 +1,90 @@
+Day 23: Problem-2
+
+Problem: 232. Implement Queue using Stacks
+Implement a first in first out (FIFO) queue using only two stacks.
+The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty).
+
+Implement the MyQueue class:
+
+1.void push(int x) Pushes element x to the back of the queue.
+2.int pop() Removes the element from the front of the queue and returns it.
+3.int peek() Returns the element at the front of the queue.
+4.boolean empty() Returns true if the queue is empty, false otherwise.
+
+Problem Link:https://leetcode.com/problems/implement-queue-using-stacks/
+Difficulty Level:Easy
+Topics: Queue
+
+Approach
+1.Push Operation: When pushing an element, if both q1 and q2 are empty, we push the element to q1.
+If either q1 or q2 is non-empty, we push the element to q1. This ensures that elements are always pushed to the queue where they maintain their order.
+
+2.Pop Operation: When popping an element, if both queues are empty, we return 0 indicating an error condition or empty queue.
+If q1 is empty, we move all elements from q2 to q1 except for the last one, which represents the front of the queue.
+We then pop and return this last element. If q1 is not empty, we perform a similar operation by moving all elements from q1 to
+q2 except for the last one and then pop and return this last element.
+
+3.Peek Operation (Top): The top operation returns the front element of the queue without removing it.
+If both queues are empty, we return 0 indicating an error condition. If q1 is empty, we return the back
+element of q2 which represents the front element of the queue. Otherwise, we return the back element of q1.
+
+4.Empty Operation: This operation checks whether both q1 and q2 are empty.
+If both are empty, it returns true, indicating an empty queue. Otherwise, it returns false.
+
+Code:
+ queue<int>q1;
+  queue<int>q2;
+    MyStack() {
+        
+    }
+    bool empty() {
+      return q1.empty() && q2.empty();    
+    }
+    
+    void push(int x) {
+        if(empty()){
+            q1.push(x);
+        }
+        else if(q1.empty()){
+            q2.push(x);
+        }
+        else{
+            q1.push(x);
+        }
+    }
+    
+    int pop() {
+        if(empty()){
+            return 0;
+        }
+        else if(q1.empty()){
+            while(q2.size()>1){
+                q1.push(q2.front());
+                q2.pop();
+            }
+            int ele=q2.front();
+            q2.pop();
+            return ele;
+        }
+        else{
+             while(q1.size()>1){
+                q2.push(q1.front());
+                q1.pop();
+            }
+            int ele=q1.front();
+            q1.pop();
+            return ele;
+        }
+    }
+    
+    int top() {
+        if(empty()){
+            return 0;
+        }
+        else if(q1.empty()){
+            return q2.back();
+        }
+        else{
+            return q1.back();
+        }
+    }
