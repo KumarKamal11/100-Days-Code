@@ -1,0 +1,87 @@
+Day 23: Problem-1
+
+Problem: 225.Implement Stack using Queues
+
+Implement a last-in-first-out (LIFO) stack using only two queues.
+The implemented stack should support all the functions of a normal stack (push, top, pop, and empty).
+Implement the MyStack class:
+1.void push(int x) Pushes element x to the top of the stack.
+2.int pop() Removes the element on the top of the stack and returns it.
+3.int top() Returns the element on the top of the stack.
+4.boolean empty() Returns true if the stack is empty, false otherwise.
+
+Problem Link:https://leetcode.com/problems/implement-stack-using-queues/description/
+Difficulty Level:Easy
+Topics: Queue
+
+Approach
+
+1.We will maintain two queues, let's call them q1 and q2.
+2.When we push an element into the stack, we add it to one of the non-empty queues.
+ If both queues are empty, we arbitrarily choose one of them (let's say q1).
+3.When we pop an element from the stack, we need to move all elements except the last one
+ from the non-empty queue to the empty queue. Then we dequeue and return the last element from the non-empty queue.
+4.To retrieve the top element of the stack, we simply return the last element of the non-empty queue.
+5.The empty operation simply checks if both queues are empty.
+
+Code:
+class MyStack {
+public:
+  queue<int>q1;
+  queue<int>q2;
+    MyStack() {
+        
+    }
+    bool empty() {
+      return q1.empty() && q2.empty();    
+    }
+    
+    void push(int x) {
+        if(empty()){
+            q1.push(x);
+        }
+        else if(q1.empty()){
+            q2.push(x);
+        }
+        else{
+            q1.push(x);
+        }
+    }
+    
+    int pop() {
+        if(empty()){
+            return 0;
+        }
+        else if(q1.empty()){
+            while(q2.size()>1){
+                q1.push(q2.front());
+                q2.pop();
+            }
+            int ele=q2.front();
+            q2.pop();
+            return ele;
+        }
+        else{
+             while(q1.size()>1){
+                q2.push(q1.front());
+                q1.pop();
+            }
+            int ele=q1.front();
+            q1.pop();
+            return ele;
+        }
+    }
+    
+    int top() {
+        if(empty()){
+            return 0;
+        }
+        else if(q1.empty()){
+            return q2.back();
+        }
+        else{
+            return q1.back();
+        }
+    }
+};
+
