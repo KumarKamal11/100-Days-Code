@@ -1,0 +1,61 @@
+Day 24: Problem-2
+
+Problem: 1823. Find the Winner of the Circular Game
+
+There are n friends that are playing a game. The friends are sitting in a circle and are numbered from 1 to n in clockwise order.
+More formally, moving clockwise from the ith friend brings you to the (i+1)th friend for 1 <= i < n, and moving clockwise from the nth friend brings you to the 1st friend.
+The rules of the game are as follows:
+1.Start at the 1st friend.
+2.Count the next k friends in the clockwise direction including the friend you started at.
+3.The counting wraps around the circle and may count some friends more than once.
+  The last friend you counted leaves the circle and loses the game.
+4.If there is still more than one friend in the circle, go back to step 2 starting from the
+  friend immediately clockwise of the friend who just lost and repeat.
+5.Else, the last friend in the circle wins the game.
+  Given the number of friends, n, and an integer k, return the winner of the game.
+
+Problem Link:https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/description/
+Topics: Sliding Window , queue
+
+Approach:
+Initialization:
+
+1.Create a queue named q to store the friends' numbers.
+2.Populate the queue with integers from 1 to n, representing the friends sitting in a circle.
+3.Game Simulation:
+ Start a loop that continues until there is only one friend left in the circle (q.size() > 1).
+ Inside the loop, extract the front friend from the queue (q.front()), representing the friend who starts counting.
+ Decrement the counter (counter--) representing the number of friends to count before someone is eliminated.
+ Check if the counter has reached 0, indicating that the current friend should be eliminated:
+ If the counter reaches 0, reset it to the value of k (counter = k).
+ If the counter has not reached 0, push the current friend back into the queue, indicating that they are still part of the game.
+ Repeat the process until only one friend remains in the circle.
+ Return the Winner:
+
+4.After the loop exits (when there is only one friend left in the queue), 
+ return the remaining friend's number, which represents the winner of the game.
+ This approach essentially mimics the process described in the game's rules.
+ Starting from the first friend, it counts the next k friends in a clockwise direction,
+ eliminating the k-th friend each time until only one friend remains, who is declared the winner.
+ The queue data structure helps in efficiently simulating the circular arrangement of friends.
+
+Code:
+  int findTheWinner(int n, int k) {
+        queue<int>q;
+        for(int i=1;i<=n;i++){
+            q.push(i);
+        }
+        int counter=k;
+        while(q.size()>1){
+            int rank=q.front();
+            q.pop();
+            counter--;
+            if(counter==0){
+                counter=k;
+            }
+            else{
+                q.push(rank);
+            }
+        }
+        return q.front();
+    }
