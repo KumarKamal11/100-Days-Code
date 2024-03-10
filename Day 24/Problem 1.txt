@@ -1,0 +1,50 @@
+Day 24: Problem-1
+
+Problem: 1876. Substrings of Size Three with Distinct Characters.
+
+A string is good if there are no repeated characters.
+Given a string s​​​​​, return the number of good substrings of length three in s​​​​​​.
+Note that if there are multiple occurrences of the same substring, every occurrence should be counted.
+A substring is a contiguous sequence of characters in a string.
+
+Problem Link:https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/description/
+Topics: Sliding Window , Hash Table
+
+Approach:
+1. Sliding Window Technique:
+ It employs a sliding window of size 3 to capture substrings efficiently.
+ The window is moved across the string with pointers i and j, representing its start and end, respectively.
+
+2. Checking for "Good" Substrings:
+ When the window size is 3 (j - i + 1 == 3):
+ It extracts the current substring using string temp = s.substr(i, 3).
+ It creates a map mp to store character counts within the substring.
+ It iterates through the substring characters and increments their counts in mp.
+ If the map's size is 3 (meaning all characters are unique), it's a "good" substring, and the count is incremented.
+
+3. Sliding the Window:
+ The window is advanced by moving the right pointer (j++) to process the next character.
+ If the substring within the window was "good", the left pointer (i++) is also moved to 
+ exclude the first character from the next substring evaluation.
+4. Returning the Final Count:
+5.After processing the entire string, the function returns the total count of "good" substrings.
+Code:
+ int countGoodSubstrings(string s) {
+        int i=0,j=0,cnt=0;
+        int n=s.size();
+        while(j<n){
+            if(j-i+1==3){
+                string temp=s.substr(i,3);
+                unordered_map<char,int>mp;
+                for(auto it:temp){
+                    mp[it]++;
+                }
+                if(mp.size()==3){
+                   cnt++;  
+                }
+                i++;
+            }
+           j++;
+        }
+        return cnt;
+    }
