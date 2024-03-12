@@ -1,0 +1,51 @@
+Day 26: Problem-1
+
+Problem: 1171. Remove Zero Sum Consecutive Nodes from Linked List
+
+Given the head of a linked list, we repeatedly delete consecutive sequences of nodes that sum to 0 until there are no such sequences.
+After doing so, return the head of the final linked list.  You may return any such answer.
+
+Problem Link: https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/description/?envType=daily-question&envId=2024-03-12
+Topics: Linked List, Hash Table
+
+Approach:
+
+The first Approach which came in my mind is to solve it by two pointer,in which we first create a dummy node which points to the head.After
+that we create a start and end two pointer, Move the end pointer to calculate consecutive sums. When a sum equals zero, remove nodes between
+the start and end pointers, and if it is not equal to zero then adjust accordingly and marking changes. Repeat this process until no further
+modifications are needed, indicating elimination of zero-sum sequences. Finally, return the head of the updated linked list which dummy->next.
+
+The problem with the solution is that it takes O(N^2) time. To optimize it we can use hashing.Below are the steps which need to be followed
+
+1.Initialize a dummy node (temp) with a value of 0 and set its next pointer to the head of the input linked list.
+Because in the end we are going to return the next of this dummynode.
+2.Calculate the prefix sum by Traversing the list. Store each encountered prefix sum along with its corresponding node pointer in a hash map (mp).
+3.If we encounter the same prefix sum again then we update it in map also.
+4.Remove Zero Sum Sequences by Traversing the list again. For each node ,Update the prefixSum by adding the current node's value.
+Locate the node where the prefixSum occurred previously from the map (mp[prefixSum]).
+5.Set the next pointer of the current node to skip over zero sum sequences by pointing it to the next pointer of the node retrieved from the map.
+6.Iterate Through List: Move to the next node and repeat the process until the end of the list is reached.
+7.Return Modified List Head: After the traversal is complete, return the next pointer of the dummy node (temp), representing the head of the modified
+linked list without consecutive sequences summing up to zero.
+
+Code:
+ ListNode* removeZeroSumSublists(ListNode* head) {
+     ListNode* temp= new ListNode(0);
+     temp->next=head;
+     int prefixSum=0;
+     unordered_map<int,ListNode*>mp;
+     mp[0]=temp;
+     while(head!=NULL){
+        prefixSum+=head->val;
+        mp[prefixSum]=head;
+        head=head->next;
+     }
+     head=temp;
+     prefixSum=0;
+     while(head!=NULL){
+        prefixSum+=head->val;
+        head->next=mp[prefixSum]->next;
+        head=head->next;
+     }
+     return temp->next;
+    }
