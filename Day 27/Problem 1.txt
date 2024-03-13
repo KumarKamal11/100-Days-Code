@@ -1,0 +1,45 @@
+Day 27: Problem-1
+
+Problem: 2485. Find the Pivot Integer 
+
+Given a positive integer n, find the pivot integer x such that:
+The sum of all elements between 1 and x inclusively equals the sum
+of all elements between x and n inclusively. Return the pivot integer x.
+If no such integer exists, return -1. It is guaranteed that there will 
+be at most one pivot index for the given input.
+
+Problem Link: https://leetcode.com/problems/find-the-pivot-integer/description/?envType=daily-question&envId=2024-03-13
+Topics:Array
+
+Approach:
+in this Approach we iterates through all possible pivot integers from 1 to n-1, checking if the sum of elements to the left
+and right of each integer is equal. If a pivot integer is found, it returns that integer; otherwise, it returns -1.
+
+1.Calculate the sum of all integers from 1 to n using the formula: sum = (n * (n + 1)) / 2.
+2.Initialize a variable leftsum to 0 to keep track of the sum of elements to the left of the current element x.
+3.Iterate through all integers from 1 to n-1.
+4.For each integer i:
+5.Calculate rightsum as sum - leftsum - i.
+6.Check if leftsum is equal to rightsum.
+7.If equal, return i as the pivot integer x.
+8.If not equal, update leftsum by adding i to it.
+9.If no pivot integer is found during the iteration, return -1 to indicate that no such integer exists.
+
+Code:
+ int pivotInteger(int n) {
+       if(n==1){
+        return 1;
+       }
+       int sum=(n*(n+1))/2;
+       int leftsum=0;
+       for(int i=1;i<n;i++){
+         int rightsum=sum-leftsum-i;
+         if(leftsum==rightsum){
+            return i;
+        }
+         else{
+            leftsum+=i;
+        }
+     }
+       return -1;
+    }
