@@ -1,0 +1,64 @@
+Day 28: Problem-1
+
+Problem: First negative integer in every window of size k
+
+Given an array A[] of size N and a positive integer K, find 
+the first negative integer for each and every window
+(contiguous subarray) of size K.
+
+Problem Link: https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/0
+Topics:Array,Queue
+
+Approach:
+We can simply use a sliding window approach and a queue to identify the initial negative integer within each
+window size in an array. We iterates through the array, tracking window boundaries with two pointers. 
+Upon geting a negative integer, it's appended to the deque. When the window size equals K, it checks 
+the deque for negative integers. If found, it appends the first one to the result; otherwise, it adds 0.After
+that left pointer is incremented, and if the element at the front of the window is negative, it's removed from the deque.
+This process continues until all windows are processed, at the end we return the result.
+
+
+1.It initializes two pointers, i and j, to keep track of the current window boundaries.
+2.It utilizes a deque (double-ended queue) to store negative integers encountered within the current window.
+Deque is chosen for its efficient insertion and removal operations at both ends.
+3.The code iterates through the array from index 0 to N-1.
+4.At each step, it checks if the current element is negative.
+If it is, the element is inserted at the back of the deque.
+5.Once the size of the window (j - i + 1) reaches K, the code checks if the deque is non-empty.
+If it is, it means there's at least one negative integer within the current window. In this case,
+it appends the front element of the deque (which is the first negative integer encountered in the window) to the result vector.
+6.If the deque is empty, it means there's no negative integer within the current window.
+In this case, it appends 0 to the result vector.
+7.Additionally, if the element at the front of the window (A[i]) is negative,
+it is removed from the deque, as it will no longer be part of the next window.
+8.Finally, it increments the left pointer (i) to move the window forward by one position.
+9.The right pointer (j) continues to iterate through the array until the end.
+
+Code:
+vector<long long> printFirstNegativeInteger(long long int A[],
+                                             long long int N, long long int K) {
+   vector<long long>res;
+     deque<long long>deq;
+     int i=0,j=0;
+     while(j<N){
+         if(A[j]<0){
+             deq.push_back(A[j]);
+         }
+         if(j-i+1==K){
+             if(!deq.empty()){
+                 res.push_back(deq.front());
+             }
+             else{
+                 res.push_back(0);
+             }
+             if(A[i]<0){
+                 if(!deq.empty()){
+                 deq.pop_front();
+             }
+             }
+             i++;
+         }
+         j++;
+     }
+     return res;                                            
+ }
