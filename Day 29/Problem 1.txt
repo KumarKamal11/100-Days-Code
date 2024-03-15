@@ -1,0 +1,58 @@
+Day 28: Problem-1
+
+Problem: 515. Find Largest Value in Each Tree Row
+
+Given the root of a binary tree, return an array of the largest value in each row of the tree (0-indexed).
+
+Problem Link:https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/
+Topics:Binary Tree
+
+Approach:
+Although the difficulty level of this question is marked as medium but it is an easy question.Simply we have
+to return the maximum element at each level of binary tree.If we know the concept of level order traversal then
+it will be very easy to compute the maximum at each level.The thing which we have to keep in mind that while travesing 
+each level we have to maintain a variable which would store the maximum at each level and after the iteration
+of each level we have too push back the element in the vector(ans).
+
+1.Create an empty vector ans to store the largest values at each level.
+2.Check if the root is NULL, if so, return the empty vector ans.
+3.Create a queue of TreeNode pointers to perform level order traversal.
+4.Push the root node onto the queue.
+5.While the queue is not empty, iterate through each level of the tree.
+6.Get the number of nodes in the current level and store it in n.
+7.Initialize curr to store the maximum value encountered in the current level, initially set to INT_MIN.
+8.Iterate through each node in the current level.
+9.Dequeue a node from the front of the queue.
+10.Update curr to the maximum value between its current value and the value of the dequeued node.
+11.If the dequeued node has a left child, enqueue it.
+12.If the dequeued node has a right child, enqueue it.
+13.After processing all nodes in the current level, push the maximum value curr into the ans vector.
+14.Repeat steps 6 to 14 until all levels of the tree are traversed.
+15.Return the ans vector containing the largest values at each level of the tree.
+
+Code:
+ vector<int> largestValues(TreeNode* root) {
+        vector<int> ans;
+        if(root==NULL){
+            return ans;
+        }
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            int n=q.size();
+            int curr=INT_MIN;
+            for(int i=0;i<n;i++){
+                TreeNode* temp=q.front();
+                q.pop();
+                curr=max(curr,temp->val);
+                if(temp->left){
+                    q.push(temp->left);
+                }
+                if(temp->right){
+                    q.push(temp->right);
+                }
+            }
+            ans.push_back(curr);
+        }
+        return ans;
+    }
