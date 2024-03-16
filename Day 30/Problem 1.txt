@@ -1,0 +1,30 @@
+Day 30: Problem-1
+
+Problem: 226. Invert Binary Tree
+
+Given the root of a binary tree, invert the tree, and return its root.
+
+Problem Link: https://leetcode.com/problems/invert-binary-tree/description/
+Topics:Binary Tree
+
+Approach:
+
+The simple Approach of inverting the binary tree is by swapping left and right children of each node.
+It starts with a NULL check for an empty tree and returns NULL if so. Otherwise, it swaps children
+of the current node, then calls itself recursively on left and right subtrees. This recursive process
+continues until the entire tree is inverted. Each node's children are swapped, effectively reversing the
+tree's structure. Finally, the function returns the root of the inverted tree.
+
+Code:
+
+  TreeNode* invertTree(TreeNode* root) {
+        if(root==NULL){
+            return NULL;
+        }
+        TreeNode* temp=root->right;
+        root->right=root->left;
+        root->left=temp;
+        invertTree(root->left);
+        invertTree(root->right);
+        return root;
+    }
