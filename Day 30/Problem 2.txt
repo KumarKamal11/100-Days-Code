@@ -1,0 +1,37 @@
+Day 30: Problem-2
+
+Problem: 965. Univalued Binary Tree
+
+A binary tree is uni-valued if every node in the tree has the same value.
+Given the root of a binary tree, return true if the given tree is uni-valued, or false otherwise.
+
+Problem Link: https://leetcode.com/problems/univalued-binary-tree/description/
+Topics:Binary Tree
+
+Approach:
+
+We simply defines a function helper to check if a binary tree rooted at root is uni-valued. 
+It recursively traverses the tree, checking if each node's value matches the given data. 
+If not, it returns false.The isUnivalTree function initializes data with the value of the
+root node and then calls helper to validate if all nodes in the tree have the same value 
+as the root. If so, it returns true; otherwise, it returns false. This approach ensures
+uni-valuedness by recursively verifying each node against the root's value.
+
+Code:
+ bool helper(TreeNode* root,int data){
+       if(root==NULL){
+            return true;
+        }
+        if(root->val!=data ){
+            return false;
+        }
+        return helper(root->left,data) && helper(root->right,data);
+    }
+    bool isUnivalTree(TreeNode* root) {
+        if(root==NULL){
+            return true;
+        }
+        int data=root->val;
+        return helper(root,data);
+    }
+ 
