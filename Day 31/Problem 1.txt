@@ -1,0 +1,47 @@
+Day 31: Problem-1
+
+Problem: 199. Binary Tree Right Side View
+Given the root of a binary tree, imagine yourself standing on the right side of it, 
+return the values of the nodes you can see ordered from top to bottom.
+
+Problem Link: https://leetcode.com/problems/binary-tree-right-side-view/description/
+Topics:Binary Tree
+
+Approach:
+
+The Approach is very simple we can use BFS technique to find the right view of Binary Tree.
+Initially, it checks if the root is NULL; if so, it returns an empty vector since there are 
+no nodes to traverse. If the root exists, a queue data structure is initialized to store the
+nodes to be processed. Starting with the root, the code iterates through each level of the 
+tree using a while loop that continues until the queue is empty. Within each level, it captures
+the rightmost node's value by pushing it into the answer vector. Then, for each node in the current
+level, it enqueues its right child first, followed by its left child. This ordering ensures that the
+right child, which represents the node visible from the right side, is enqueued before the left child.
+By processing each level in this manner, the code effectively builds the right-side view of the binary
+tree. Finally, it returns the answer vector containing the values of the nodes visible from the right side,
+ordered from top to bottom.
+
+Code:
+  vector<int> rightSideView(TreeNode* root) {
+        vector<int>ans;
+        if(root==NULL){
+            return ans;
+        }
+        queue<TreeNode*>q;
+        q.push(root);
+        while(!q.empty()){ 
+            int n=q.size();                          
+            ans.push_back(q.front()->val);
+            while(n--){
+              TreeNode* temp=q.front();
+              q.pop();
+              if(temp->right!=NULL){
+                q.push(temp->right);
+              }
+              if(temp->left!=NULL){
+                q.push(temp->left);
+              }
+            }
+        }
+        return ans;
+    }
