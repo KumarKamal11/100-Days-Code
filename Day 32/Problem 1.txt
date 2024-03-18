@@ -1,0 +1,36 @@
+Day 31: Problem-1
+
+Problem: 129. Sum Root to Leaf Numbers
+
+You are given the root of a binary tree containing digits from 0 to 9 only.Each root-to-leaf path in the tree represents a number.
+For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123.Return the total sum of all root-to-leaf numbers. Test cases
+are generated so that the answer will fit in a 32-bit integer. A leaf node is a node with no children.
+
+Problem Link: https://leetcode.com/problems/sum-root-to-leaf-numbers/description/
+Topics:Binary Tree
+
+Approach:
+The code simple uses a recursive approach to traverse the binary tree, calculating the sum of all root-to-leaf numbers.
+It defines a helper function that takes a node and a value representing the current number. At each node, it computes
+the new number by appending the current node's value to the previous number. If the node is a leaf, it returns the 
+computed number. Otherwise, it recursively calls the helper function on the left and right children, passing the 
+updated number. Finally, the sumNumbers function initializes the recursion with the root node and returns the 
+accumulated sum of all root-to-leaf numbers.
+
+Code:
+   int helper(TreeNode* root,int val){
+      if(root==NULL){
+        return 0;
+      }
+      int num=(val*10+root->val);
+      if(root->left==NULL && root->right==NULL){
+        return num;
+      }
+      return helper(root->left,num)+helper(root->right,num);
+    }
+    int sumNumbers(TreeNode* root) {
+        if(root==NULL){
+            return 0;
+        }
+        return helper(root,0);
+    }
