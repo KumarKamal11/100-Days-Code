@@ -1,0 +1,29 @@
+Day 32: Problem-1
+
+Problem: 230. Kth Smallest Element in a BST
+
+Given the root of a binary search tree, and an integer k, return the kth 
+smallest value (1-indexed) of all the values of the nodes in the tree.
+
+Problem Link: https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
+Topics:Binary Search Tree
+
+Approach:
+We can simply use the the property of BST traversal. The inorder traversal of Binary search tree is sorted.
+We can use this property,We simply store the inorder traversal in an array after that simply we can return 
+the kth smallest element by return ans[k-1].
+
+Code:
+  void inorder(TreeNode* root,vector<int>&res){
+        if(root==NULL){
+            return ;
+        }
+        inorder(root->left,res);
+        res.push_back(root->val);
+        inorder(root->right,res);
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        vector<int>res;
+        inorder(root,res);
+        return res[k-1];
+    } 
