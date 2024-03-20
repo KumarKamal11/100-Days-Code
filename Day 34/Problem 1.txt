@@ -1,0 +1,43 @@
+Day 34: Problem-1
+
+Problem: 109. Convert Sorted List to Binary Search Tree
+
+Given the head of a singly linked list where elements are sorted in ascending order, convert it to a 
+height-balanced binary search tree.
+
+Problem Link: https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
+Topics:Binary Search Tree
+
+Approach:
+For Solving this question We need to find the middle of linked list.There are two ways to find 
+middle of linked list.The first one is to find the length of linked list and then traverse the 
+linked list upto the (length/2).The second Approach is slow and fast pointer,with the help of 
+this algorithm we find the middle of linked list and make middle node to root of the treenode.
+To ensure that we create a balanced BST, we need to split the linked list into two halves The 
+left half of the linked list, before the middle element, becomes the left subtree of the current
+root and The right half of the linked list, after the middle element, becomes the right subtree 
+of the current root.After that the function recursively calls itself to construct the left and 
+right subtrees.At the end we return the root of the TreeNode.
+
+Code:
+  TreeNode* sortedListToBST(ListNode* head) {
+        if(head==NULL){
+            return NULL;
+        }
+        if(head->next==NULL){
+            return new TreeNode(head->val);
+        }
+        ListNode* slow=head;
+        ListNode* fast=head;
+        ListNode* temp=NULL;
+        while(fast!=NULL && fast->next!=NULL){
+            temp=slow;
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        TreeNode* root=new TreeNode(slow->val);
+        temp->next=NULL;
+        root->left=sortedListToBST(head);
+        root->right=sortedListToBST(slow->next);
+        return root;
+    }
