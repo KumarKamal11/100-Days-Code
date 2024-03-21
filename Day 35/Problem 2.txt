@@ -1,0 +1,35 @@
+Day 35: Problem-2
+
+Problem: https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/description/
+
+Given two binary trees original and cloned and given a reference to a node target in the original tree.
+The cloned tree is a copy of the original tree. Return a reference to the same node in the cloned tree.
+Note that you are not allowed to change any of the two trees or the target node and the answer must be a
+reference to a node in the cloned tree.
+
+Problem Link: https://leetcode.com/problems/range-sum-of-bst/description/
+
+Topics:Binary Tree
+
+Approach:
+
+We simply have to traverse the original and cloned tree recursively in simultaneously.If the current node
+in the original tree matches the target node, it returns the corresponding node in the cloned tree. 
+If not, it recursively goes the left and right subtrees. If the target node is found in the left 
+subtree, the corresponding node in the cloned left subtree is returned; otherwise, it searches in the 
+right subtree. 
+
+Code:
+      TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+        if(original==NULL){
+            return NULL;
+        }
+        if(original==target){
+            return cloned;
+        }
+        TreeNode* ans=getTargetCopy(original->left,cloned->left,target);
+        if(ans!=NULL){
+            return ans;
+        }
+        return getTargetCopy(original->right,cloned->right,target);
+    }
