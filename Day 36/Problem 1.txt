@@ -1,0 +1,50 @@
+Day 36: Problem-1
+
+Problem: 1315. Sum of Nodes with Even-Valued Grandparent
+
+Given the root of a binary tree, return the sum of values of nodes with an even-valued grandparent. 
+If there are no nodes with an even-valued grandparent, return 0.
+A grandparent of a node is the parent of its parent if it exists.
+
+Problem Link: https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/description/
+Topics:Binary Search Tree
+
+Approach:
+Although this question is marked as medium but this is question is very easy.We simply has to take care 
+of four things that if a node is even than we have to check the four cases
+1. ((root->left) && (root->left->left))
+2. ((root->left) && (root->left->right))
+3. ((root->right) && (root->right->left))
+4. ((root->right) && (root->right->right))
+If all these criteria meets then simply we have to add the node value into ans and recursively call for left
+subtree and right subtree.At the end we return ans.
+
+Code:
+    int helper(TreeNode* root,int &sum){
+        if(root==NULL){
+            return 0;
+        }
+        if(root->val%2==0){
+            if((root->left)&&(root->left->left)){
+                sum+=root->left->left->val;
+            }
+            if((root->left)&&(root->left->right)){
+                sum+=root->left->right->val;
+            }
+            if((root->right)&&(root->right->left)){
+                sum+=root->right->left->val;
+            }
+            if((root->right)&&(root->right->right)){
+                sum+=root->right->right->val;
+            }
+        }
+        helper(root->left,sum);
+        helper(root->right,sum);
+        return sum;
+    }
+
+    int sumEvenGrandparent(TreeNode* root) {
+        int sum=0;
+        int res=helper(root,sum);
+        return res;
+    }
