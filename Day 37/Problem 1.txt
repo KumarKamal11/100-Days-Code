@@ -1,0 +1,46 @@
+Day 37: Problem-1
+
+Problem: 501. Find Mode in Binary Search Tree
+
+Given the root of a binary search tree (BST) with duplicates, return all the mode(s)
+(i.e., the most frequently occurred element) in it. If the tree has more than one mode,
+return them in any order.
+
+Problem Link: https://leetcode.com/problems/find-mode-in-binary-search-tree/description/
+Topics:Binary Search Tree
+
+Approach:
+The Approach is very simple, We need to count the frequency of nodes while travesing.
+For counting purpose we can simply use a map to store the frequency of elements.After
+storing the elements in map we can return the maximum occuring element.
+
+Code:
+   void inorder(TreeNode* root,unordered_map<int,int>&mp){
+    if(root==NULL){
+        return ;
+    }
+    inorder(root->left,mp);
+    mp[root->val]++;
+    inorder(root->right,mp);
+ }
+    vector<int> findMode(TreeNode* root) {
+         vector<int>ans;
+         if(root==NULL){
+           return ans;
+        }
+        unordered_map<int,int>mp;
+        inorder(root,mp);
+       
+        int max=0;
+        for(auto it:mp){
+            if(it.second>max){
+                max=it.second;
+            }
+        }
+        for(auto it:mp){
+            if(it.second==max){
+                ans.push_back(it.first);
+            }
+        }
+        return ans;
+    }
