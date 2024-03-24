@@ -1,0 +1,35 @@
+Day 38: Problem-1
+
+Problem: 287. Find the Duplicate Number
+
+Given an array of integers nums containing n + 1 integers where each integer
+is in the range [1, n] inclusive.There is only one repeated number in nums, 
+return this repeated number.You must solve the problem without modifying the
+array nums and uses only constant extra space.
+
+Problem Link: https://leetcode.com/problems/find-the-duplicate-number/description/?envType=daily-question&envId=2024-03-24 
+Topics: Array,Hashmap
+
+Approach:
+The first approach that comes in our mind is to sort the array and check if the element
+occurs or not.The second Approach which takes less time in computing the problem is to
+use map which would store the frequency of element.If an element occurs more than one time
+then simply we can return the element.
+
+Code:
+  class Solution {
+   public:
+    int findDuplicate(vector<int>& nums) {
+        unordered_map<int,int>mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
+        }
+        int ans=0;
+        for(auto it:mp){
+            if(it.second>1){
+                ans=it.first;
+            }
+        }
+        return ans;
+    }
+};
