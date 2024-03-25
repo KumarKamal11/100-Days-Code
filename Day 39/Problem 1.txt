@@ -1,0 +1,31 @@
+Day 39: Problem-1
+
+Problem: 442. Find All Duplicates in an Array
+
+Given an integer array nums of length n where all the integers of nums are in the range [1, n] 
+and each integer appears once or twice, return an array of all the integers that appears twice.
+You must write an algorithm that runs in O(n) time and uses only constant extra space.
+
+Problem Link: https://leetcode.com/problems/find-all-duplicates-in-an-array/description/?envType=daily-question&envId=2024-03-25
+Topics: Array,Hashmap
+
+Approach:
+The first approach that comes in our mind is to sort the array and check if the element
+occurs twice or not.The second Approach which takes less time in computing the problem is to
+use map which would store the frequency of element.If an element occurs exactly 2 times then,
+simply we can return the element.
+
+Code:
+ vector<int> findDuplicates(vector<int>& nums) {
+        unordered_map<int,int>mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
+        }
+        vector<int>ans;
+        for(auto it:mp){
+            if(it.second==2){
+               ans.push_back(it.first);
+            }
+        }
+        return ans;
+    }
