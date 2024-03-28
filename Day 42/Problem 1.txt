@@ -1,0 +1,30 @@
+Day 42: Problem-1
+
+Problem: 404. Sum of Left Leaves
+Given the root of a binary tree, return the sum of all left leaves.
+A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
+
+Problem Link: https://leetcode.com/problems/sum-of-left-leaves/description/
+Topics: Binary Tree
+
+Approach:
+Check if the root node is NULL,If it's NULL, return the sum.If the root is not NULL, check if it has a left child.
+If it does, check if this left child is a leaf node (i.e., has no children itself). If the left child is a leaf, 
+add its value to the sum. Recursively call sumOfLeftLeaves on the left child and the right child of the root.Repeat
+steps 2-4 for each non-NULL node in the tree, accumulating the sum of values of left leaves encountered during the 
+traversal. Return the final sum as the result.
+
+Code:
+    int sum=0;
+    int sumOfLeftLeaves(TreeNode* root) {
+        if(root==NULL){
+            return sum;
+        }
+        if(root->left!=NULL && root->left->left==NULL && root->left->right==NULL){
+           sum+=root->left->val;
+        }
+        sumOfLeftLeaves(root->left);
+        sumOfLeftLeaves(root->right);
+        return sum;
+    }
+};
