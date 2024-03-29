@@ -1,0 +1,43 @@
+Day 43: Problem-1
+
+Problem: 589. N-ary Tree Preorder Traversal
+
+Given the root of an n-ary tree, return the preorder traversal of its nodes' values.
+Nary-Tree input serialization is represented in their level order traversal. Each 
+group of children is separated by the null value (See examples).
+
+Problem Link: https://leetcode.com/problems/n-ary-tree-preorder-traversal/description/
+Topics: Binary Tree
+
+Approach:
+The code implements a recursive approach for performing a preorder traversal on an n-ary tree.It defines 
+a function named Preorder which takes two parameters: a pointer to the current node root, and a reference
+to a vector ans to store the traversal result. The function starts by checking if the current node is NULL, 
+in which case it returns, signaling the end of that branch of the recursion. If the node is not NULL, its 
+value is appended to the ans vector. Subsequently, the function iterates over each child node of the current
+node, processing them recursively by calling Preorder on each child node in sequence. This recursive process
+continues until all nodes in the tree have been visited, effectively traversing the tree in a preorder manner
+visiting the root node, then its children from left to right, and their respective children, and so forth. 
+Overall, the code elegantly employs recursion to efficiently explore the entire tree,generating the preorder
+traversal result.
+
+Code:
+   class Solution {
+public:
+   void Preorder(Node* root,vector<int>&ans){
+    if(root==NULL){
+        return;
+    }
+    ans.push_back(root->val);
+    for(auto it:root->children){
+        Preorder(it,ans);
+    }
+   }
+    
+    vector<int> preorder(Node* root) {
+        vector<int>ans;
+        Preorder(root,ans);
+        return ans;
+
+    }
+};
