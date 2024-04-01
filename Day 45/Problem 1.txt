@@ -1,0 +1,31 @@
+Day 45: Problem-1
+
+Problem: 58. Length of Last Word
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.
+
+Problem Link: https://leetcode.com/problems/length-of-last-word/description/
+Topics: String
+
+Approach:
+
+We have to return the length of the last word so it is good to traverse from end of the string.
+Traverse from the end of the string. Ignore the spaces at the end of the string.Now increase the
+value of length for every s[i] != ' '.Return the length when you get space and your length is 
+greater than zero.This is the basic and simple approach for this problem.
+
+Code:
+   int lengthOfLastWord(string s) {
+        int n=s.length();
+        int i=n-1;
+        while(i>=0 and s[i]==' '){
+            i--;
+        }
+        int length=0;
+        while(i>=0 and s[i]!=' '){
+            i--;
+            length++;
+        }
+        return length;
+    }
