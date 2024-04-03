@@ -13,25 +13,31 @@ Topics: Heap
 
 Approach:
 
+Each time we need to find the biggest number in the array, remove it from the array and 
+add it's sqaure root value to the array. So we use priority queue to find the largest 
+value at any given time.
 
+
+Step 1: Declare a priority queue (max Heap) and store all the array values in the heap.
+Step 2: For k times, pop the top value(this will be biggest value in the array at that point of time)
+and add sqrt(value) back to the heap.
+Step 3: Repeat Step 2 k times.
+Step 4: Add all the remaining elements in the heap and return the summation.
 
 Code:
- int lastStoneWeight(vector<int>& stones) {
-      priority_queue<int>p;
-      for(int i=0;i<stones.size();i++){
-        p.push(stones[i]);
-      }  
-      while(p.size()>1){
-        int weight=p.top();
-        p.pop();
-        weight-=p.top();
-        p.pop();
-        if(weight!=0){
-            p.push(weight);
+ long long pickGifts(vector<int>& gifts, int k) {
+        priority_queue<long long>pq;
+        long long sum=0;
+        for(int i=0;i<gifts.size();i++){
+            pq.push(gifts[i]);
         }
-      }
-      if(p.empty()){
-        return 0;
-      }
-      return p.top();
+        while(k--){
+            pq.push(sqrt(pq.top()));
+            pq.pop();
+        }
+        while(!pq.empty()){
+            sum+=pq.top();
+            pq.pop();
+        }
+        return sum;
     }
