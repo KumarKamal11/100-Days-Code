@@ -1,0 +1,34 @@
+Day 52: Problem-1
+
+Problem: Given a 2D integer array matrix, return the transpose of matrix.
+The transpose of a matrix is the matrix flipped over its main diagonal, 
+switching the matrix's row and column indices.
+
+
+Problem Link: https://leetcode.com/problems/transpose-matrix/description/
+Topics: Matrix
+
+Approach
+
+The transpose of a matrix can be obtained by swapping its rows and columns. 
+We iterate through each element of the original matrix and fill the 
+corresponding position in the transposed matrix.
+
+1. Determine the number of rows (row) and columns (col) in the original matrix.
+2. Create a new matrix arr with dimensions col x row.
+3. Iterate through each element of the original matrix, assigning it to the 
+   corresponding position in the transposed matrix.
+4. Return the transposed matrix.
+
+Code:
+  vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+        int row=matrix.size();
+        int col=matrix[0].size();
+        vector<vector<int>>ans(col,vector<int>(row,0));
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+              ans[j][i]=matrix[i][j];
+            }
+        }
+        return ans;
+    }
