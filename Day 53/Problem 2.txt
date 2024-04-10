@@ -1,0 +1,38 @@
+Day 53: Problem-2
+
+Given an n x n binary matrix image, flip the image horizontally, then invert it,
+and return the resulting image. To flip an image horizontally means that each row
+of the image is reversed. For example, flipping [1,1,0] horizontally results in [0,1,1].
+To invert an image means that each 0 is replaced by 1, and each 1 is replaced by 0.
+For example, inverting [0,1,1] results in [1,0,0].
+
+
+Problem Link:  https://leetcode.com/problems/flipping-an-image/description/
+Topics: Matrix
+
+Approach
+
+Just Reverse the each row of matrix. After that flip set the zero to one 
+and vice versa.
+
+Code:
+ 
+ vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {
+        int row=image.size();
+        int col=image[0].size();
+        vector<vector<int>>ans(row,vector<int>(col));
+        for(int i=0;i<row;i++){
+            reverse(image[i].begin(),image[i].end());
+        }
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(image[i][j]==1){
+                    ans[i][j]=0;
+                }
+                if(image[i][j]==0){
+                    ans[i][j]=1;
+                }
+            }
+        }
+        return ans;
+    }
