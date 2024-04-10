@@ -1,0 +1,37 @@
+Day 52: Problem-2
+
+You are given an m x n integer grid accounts where accounts[i][j] is the amount of money 
+the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank. Return the wealth that the richest customer has.
+A customer's wealth is the amount of money they have in all their bank accounts. The 
+richest customer is the customer that has the maximum wealth.
+
+
+Problem Link: https://leetcode.com/problems/richest-customer-wealth/description/
+Topics: Matrix
+
+Approach
+
+1. Initialize maxsum to INT_MIN to store the maximum wealth found.
+2. Iterate over each person's account using a range-based for loop
+3. For each account, calculate the total wealth by summing up the amounts in each account.
+4. If the total wealth of the current person is greater than maxsum, update maxsum with the new total wealth.
+5. Return maxsum as the maximum wealth among all people.
+
+Code:
+ int maximumWealth(vector<vector<int>>& accounts) {
+        int row=accounts.size();
+        int col=accounts[0].size();
+        int maxs=INT_MIN;
+        for(int i=0;i<row;i++){
+            int s=0;
+            for(int j=0;j<col;j++){
+                s+=accounts[i][j];
+            }
+            if(s>maxs){
+                maxs=s;
+            }
+        }
+        return maxs;
+    }
+
+  
