@@ -1,0 +1,35 @@
+Day 54: Problem-1
+
+Problem:Given the root of an n-ary tree, return the postorder traversal of its nodes' values.
+Nary-Tree input serialization is represented in their level order traversal. Each group of 
+children is separated by the null value.
+
+Problem Link: https://leetcode.com/problems/n-ary-tree-postorder-traversal/description/
+Topics: Binary Tree
+
+Approach
+
+We will use same binary tree postorder travesal concept But,
+Unlike a Binary Tree where each node has exactly 2 child nodes,
+an N-Ary Tree can have multiple child nodes. So we have to do the 
+same thing (i.e) We will iterate through the children vector using
+a for loop and have recursive call for each of the child nodes.
+
+
+Code:
+   void Preorder(Node* root,vector<int>&ans){
+    if(root==NULL){
+        return;
+    }
+    ans.push_back(root->val);
+    for(auto it:root->children){
+        Preorder(it,ans);
+    }
+   }
+    
+    vector<int> preorder(Node* root) {
+        vector<int>ans;
+        Preorder(root,ans);
+        return ans;
+
+    }
