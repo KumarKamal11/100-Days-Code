@@ -1,1 +1,44 @@
+Day 56: Problem-2
 
+Given a m x n matrix grid which is sorted in non-increasing order both row-wise and column-wise,
+return the number of negative numbers in grid.
+
+Problem Link: https: https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/description/
+Topics: Matrix,binary search
+
+Approach
+
+In this code, we're going through each row of a matrix. We have to find the
+first negative number in each row.we have to scan from left to right. We start
+at the leftmost and  rightmost of each row. We repeatedly calculate the mid 
+index and compare the value at that index with 0. If it's negative, we update 
+the right pointer to mid-1. Otherwise, we update the left pointer to mid+1. 
+We continue this process until the left pointer exceeds the right pointer.
+Once we find that negative number, we count how many negatives there are 
+in that row by subtracting its index from the total number of columns in 
+the matrix. We keep track of this count for each row, adding it to our running 
+total.
+
+
+Code:
+  int countNegatives(vector<vector<int>>& grid) {
+        int count = 0;
+        int m = grid.size();   
+        int n = grid[0].size(); 
+        for (int i = 0; i < m; i++) {
+            int left = 0;
+            int right = n - 1;
+            
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                
+                if (grid[i][mid] < 0) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            count += n - left;  
+        } 
+        return count;
+    }
