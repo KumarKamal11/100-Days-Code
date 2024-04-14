@@ -1,0 +1,33 @@
+Day 57: Problem-2
+
+You are given two strings of the same length s and t. In one
+step you can choose any character of t and replace it with 
+another character. Return the minimum number of steps to make 
+t an anagram of s.An Anagram of a string is a string that contains
+the same characters with a different (or the same) ordering.
+
+Problem Link:https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/description/
+Topics: String,Hashmap
+
+Approach
+
+Just store the occurence of each character of string which is present in 's'.And we decrease 1 if we 
+encounter the same character in t. At the end just count the index value which is greater than zero.
+
+Code:
+   int minSteps(string s, string t) {
+        int arr[26]={0};
+        for(auto it:s){
+            arr[it-'a']++;
+        }
+         for(auto it:t){
+            arr[it-'a']--;
+        }
+        int ans=0;
+        for(int i=0;i<26;i++){
+            if(arr[i]>0){
+                ans+=arr[i];
+            }
+        }
+     return ans;
+    }
