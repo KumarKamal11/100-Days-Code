@@ -1,0 +1,28 @@
+Day 57: Problem-1
+
+Given an integer num, return the number of steps to reduce it to zero.
+In one step, if the current number is even, you have to divide it by 2,
+otherwise, you have to subtract 1 from it.
+
+Problem Link: https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/description/
+Topics: Number Theory
+
+Approach
+
+Just Simple write the code according to the given statement.
+
+Code:
+  int numberOfSteps(int n) {
+        int cnt=0;
+        while(n!=0){
+            if(n%2==0){
+                n=n/2;
+                cnt++;
+            }
+            if(n%2==1){
+                n=n-1;
+                cnt++;
+            }
+        }
+        return cnt;
+    }
