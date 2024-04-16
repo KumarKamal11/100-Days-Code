@@ -1,0 +1,29 @@
+Day 59: Problem-1
+
+An integer divisible by the sum of its digits is said to be a Harshad number. 
+You are given an integer x. Return the sum of the digits of x if x is a Harshad number,
+otherwise, return -1.
+
+Problem Link: https://leetcode.com/problems/harshad-number/description/
+Topics: Number Theory
+
+Approach
+
+Just Simple write the code according to the given statement. And check the 
+condition.If it is true return the ans;
+
+Code:
+   int sumOfTheDigitsOfHarshadNumber(int x) {
+        int ans=0;
+        int orig=x;
+        while(x!=0){
+            int rem=x%10;
+            ans+=rem;
+            x=x/10;
+        }
+        if(orig % ans==0){
+            return ans;
+        }    
+        return -1;
+        
+    }
