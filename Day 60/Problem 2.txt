@@ -1,0 +1,34 @@
+Day 60: Problem-2
+
+Given an integer array nums, return the greatest common divisor of the smallest
+number and largest number in nums.The greatest common divisor of two numbers is 
+the largest positive integer that evenly divides both numbers.
+
+Problem Link: https://leetcode.com/problems/find-greatest-common-divisor-of-array/description/
+Topics: Number Theory
+
+Approach
+ To solve this problem we have to find the minimum and maximum element which is present
+ in array. After finding these two elements we have to find GCD of these two numbers and 
+ return GCD as result.
+
+Code:
+  int findGCD(vector<int>& nums) {
+        int min=INT_MAX;
+        int max=INT_MIN;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>max){
+                max=nums[i];
+            }
+            if(nums[i]<min){
+                min=nums[i];
+            }
+        }
+        int gcd=1;
+        for(int i=1;i<=max;i++){
+            if((min%i==0) && (max%i==0)){
+                gcd=i;
+            }
+        }
+        return gcd;
+    }
