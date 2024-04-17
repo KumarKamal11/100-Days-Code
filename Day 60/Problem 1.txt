@@ -1,0 +1,32 @@
+Day 60: Problem-1
+
+You are given two positive integers n and k. A factor of an integer n is defined as an integer i where n % i == 0.
+Consider a list of all factors of n sorted in ascending order, return the kth factor in this list or return -1 if 
+n has less than k factors.
+
+Problem Link: https://leetcode.com/problems/the-kth-factor-of-n/description/
+Topics: Number Theory
+
+Approach
+
+The simple Approach of this problem is to store the all possible factors into an array
+and after that return the kth element of an array.
+
+Code:
+  int kthFactor(int n, int k) {
+        vector<int>ans;
+        for(int i=1;i<=n;i++)
+        {
+            if(n%i==0)
+            {
+                ans.push_back(i);
+            }
+
+        }
+        if(k<=ans.size()){
+        return ans[k-1];
+        }
+        else{
+        return -1;
+        }
+    }
