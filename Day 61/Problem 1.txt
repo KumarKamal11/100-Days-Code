@@ -1,0 +1,40 @@
+Day 61: Problem-1
+
+You are given an array nums consisting of positive integers.
+You have to take each integer in the array, reverse its digits,
+and add it to the end of the array. You should apply this 
+operation to the original integers in nums.Return the number of 
+distinct integers in the final array.
+
+Problem Link: https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/description/
+
+Approach
+
+We can simply revesre the each element of array and then push back int nums[i].
+After that we create a set and then push all elements into it (it stores each)
+unique number of times. At the end we return the size of the set.
+
+Code:
+  int rever(int num){
+    int reverse=0;
+    while(num!=0){
+        int rem=num%10;
+        reverse=reverse*10+rem;
+        num/=10;
+    }
+     return reverse;
+    }
+    int countDistinctIntegers(vector<int>& nums) {
+        int n=nums.size();
+        int res=0;
+        for(int i=0;i<n;i++){
+            res = rever(nums[i]);
+            nums.push_back(res);
+        }
+      
+        set<int>st;
+        for(int i=0;i<2*n;i++){
+           st.insert(nums[i]);
+        }
+        return st.size();
+    }
