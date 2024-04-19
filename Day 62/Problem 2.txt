@@ -1,0 +1,46 @@
+Day 63: Problem-2
+
+A self-dividing number is a number that is divisible by every digit it contains.
+For example, 128 is a self-dividing number because 128 % 1 == 0, 128 % 2 == 0, 
+and 128 % 8 == 0. A self-dividing number is not allowed to contain the digit zero.
+Given two integers left and right, return a list of all the self-dividing numbers 
+in the range [left, right].
+
+Problem Link: https://leetcode.com/problems/self-dividing-numbers/description/ 
+
+Approach
+
+To solve this problem, we can iterate through the numbers in the given range and check 
+if each number satisfies the self-dividing condition.
+
+1. We start with an empty array to collect self-dividing numbers.
+2. We go through all numbers in the given range (from left to right).
+3. For each number, we break it down into its individual digits and check two things:
+   if any of the digits are 0 or if the number is not divisible by one of its digits.
+4. If either condition is met, we skip that number.
+5.If none of these conditions are met for all digits, we add that number to our list of self-dividing numbers.
+6. After checking all numbers in the range, we return the list containing the self-dividing numbers we found.
+
+
+Code:
+  bool selfDiv(int num){
+        int orig=num;
+        while(num!=0){
+          int rem=num%10;
+          num=num/10;
+          if(rem==0 || orig%rem !=0){
+            return false;
+           }
+        }
+        return true;
+    }
+    vector<int> selfDividingNumbers(int left, int right) {
+       vector<int>ans;
+       for(int i=left;i<=right;i++){
+        bool res=selfDiv(i);
+        if(res==1){
+            ans.push_back(i);
+        }
+       }
+       return ans;
+    }
