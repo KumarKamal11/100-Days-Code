@@ -1,0 +1,29 @@
+Day 63: Problem-1
+
+You are given an integer array nums with the following properties:
+1. nums.length == 2 * n.
+2. nums contains n + 1 unique elements.
+3. Exactly one element of nums is repeated n times.
+4. Return the element that is repeated n times.
+
+Problem Link: https://leetcode.com/problems/n-repeated-element-in-size-2n-array/description/
+
+Approach
+Just simple create a Hashmap and count the occurence of each element.If the element occurs
+eaxctly N/2 then simply return it as a result.
+
+Code:
+      int repeatedNTimes(vector<int>& nums) {
+        int n=nums.size();
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++){
+            mp[nums[i]]++;
+        }
+        int ans=0;
+        for(auto it:mp){
+            if(it.second == n/2){
+                ans=it.first;
+            }
+        }
+        return ans;
+    }
