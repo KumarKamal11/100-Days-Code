@@ -1,0 +1,37 @@
+Day 66: Problem-1
+
+Given a m x n matrix grid which is sorted in non-increasing order both 
+row-wise and column-wise, return the number of negative numbers in grid.
+
+Problem Link: https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/description/
+
+Approach
+
+As it is given that matrix is sorted.We try to find first negetive element in each row and store it's index
+then just substract index with the number of colums because we know that all the elements on the right side
+of the array is going to be smaller that means negative.At the end  we return the count.
+
+Code:
+       int countNegatives(vector<vector<int>>& grid) {
+        int count = 0;
+        int m = grid.size();   
+        int n = grid[0].size(); 
+        for (int i = 0; i < m; i++) {
+            int left = 0;
+            int right = n - 1;
+            
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                
+                if (grid[i][mid] < 0) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            
+            count += n - left; 
+            
+        } 
+        return count;
+    }
