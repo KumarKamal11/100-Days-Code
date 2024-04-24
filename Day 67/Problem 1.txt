@@ -1,0 +1,31 @@
+Day 67: Problem-1
+
+The Tribonacci sequence Tn is defined as follows: 
+T0 = 0, T1 = 1, T2 = 1, and Tn+3 = Tn + Tn+1 + Tn+2 
+for n >= 0. Given n, return the value of Tn.
+
+Problem Link: https://leetcode.com/problems/n-th-tribonacci-number/description/?envType=daily-question&envId=2024-04-24
+
+Approach
+
+In this question i have used recursive and memoization technique for avoiding redundant
+calculation.The simple logic is to computes the value by summing the three preceding numbers.
+
+Code:
+    int find(int n,vector<int>& dp){
+    if(n==0){
+        return 0;
+    }
+    if(n==1 || n==2){
+        return 1;
+    }
+    if(dp[n]!=-1){
+        return dp[n];
+    }
+    dp[n]=find(n-1,dp)+find(n-2,dp)+find(n-3,dp);
+    return dp[n];
+}
+    int tribonacci(int n) {
+       vector<int>dp(n+1,-1);
+       return find(n,dp); 
+    }
