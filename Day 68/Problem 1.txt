@@ -1,0 +1,38 @@
+Day 67: Problem-1
+
+Given an array of positive integers nums and a positive integer target, return the minimal length of a 
+subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+
+Problem Link: https://leetcode.com/problems/minimum-size-subarray-sum/description/?envType=list&envId=rl8cdcmg
+
+Approach
+
+The intuition behind the problem is to use sliding window.
+
+1. Initialize left(i) and right (j) pointer with zero.
+2. when the sum exceeds the target, move the left pointer to the right and decrease the sum accordingly
+   to maintain sum>=target and to calculate the shortest length of Subarray.
+3. At the end If the answer is still INT_MAX then it means we didn't find any Subarray here, So return 0.
+
+Code:
+   int minSubArrayLen(int target, vector<int>& nums) {
+      int n=nums.size();
+      long long sum=0;
+      int i=0,j=0;
+      int ans=INT_MAX;
+      while(j<n){
+        sum+=nums[j];
+        
+        while(sum>=target){
+           ans=min(ans,j-i+1);
+           sum=sum-nums[i];
+           i++;
+        }
+        j++;
+      }
+      if(ans==INT_MAX){
+        return 0;
+      }
+      return ans;
+
+    }
