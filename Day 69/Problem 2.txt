@@ -1,0 +1,30 @@
+Day 69: Problem-2
+
+Find the cube root of each elements between given two number and return the
+summation of them.
+
+Approach
+
+Just traverse between these two elements between M and N. After that 
+calculate cube of each number and calculate the sum.
+
+Code:
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n,m;
+        cin>>n>>m;
+        
+        long long sum=0;
+        for(int i=n;i<=m;i++){
+            sum  += i*i*i;
+        }
+        cout<<sum<<" ";
+    }
+    return 0;
+}
