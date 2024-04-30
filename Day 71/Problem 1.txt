@@ -1,0 +1,44 @@
+Day 71: Problem-1
+
+Given an array is given arr = [6, 2, 4 , 2, 4, 2, 4 , 2, 4, 2, 4]
+N = length of array
+Return the elements which are appearing more then n/2 
+Output = [2, 4]
+
+Approach
+
+The idea is very basic we use map to store the frequency of elements and
+we store the element in a vector whose occurence is more than n/2. At the 
+end return the vector as ans.
+
+Code:
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int t;
+    cin>>t;
+    
+    while(t--){
+        int n;
+        cin>>n;
+        int arr[n];
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+        }
+        vector<int>ans;
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+        for(auto it:mp){
+            if(it.second>=n/2){
+                ans.push_back(it.first);
+            }
+        }
+        for(int i=0;i<ans.size();i++){
+            cout<<ans[i]<<" ";
+        }
+    }
+    return 0;
+}
