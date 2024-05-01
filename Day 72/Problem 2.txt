@@ -1,0 +1,40 @@
+Day 72: Problem-2
+
+Find number of unique elements after taking bitwise or between
+the element of different subarrays formed by an array
+
+
+Approach
+Just find all the Possible subarrays and store the bitwise or in a temp variable.
+As We have to return the unique elements so we can store all the temp value in a 
+set. After that we can return the size of the set.
+
+Code:
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int t;
+    cin>>t;
+    
+    while(t--){
+        int n;
+        cin>>n;
+        
+        int arr[n];
+        set<int>st;
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+        }
+        
+        for(int i=0;i<n;i++){
+            int temp = 0; 
+            for(int j=i;j<n;j++){
+                temp = temp | arr[j];
+                st.insert(temp);
+            }
+        }
+        cout<<st.size()<<endl;
+    }
+    return 0;
+}
