@@ -1,0 +1,38 @@
+Day 72: Problem-1
+
+Given a number N. Return the sum of first N fibonacci numbers.
+
+Approach
+
+Simple find the each fibonacci number and return the sum.
+
+Code:
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    
+    int a=0;
+    int b=1;
+    int c=0;
+    int ans=1;
+    
+    if(n==1){
+        cout<<0;
+    }
+    else if(n==2){
+        cout<<1;
+    }
+    else{
+        
+        while(n>2){
+        c=a+b;
+        ans+=c;
+        a=b;
+        b=c;
+        n--;
+        }
+    }
+  cout<<ans;
+}
