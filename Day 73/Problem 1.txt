@@ -1,0 +1,46 @@
+Day 73: Problem-1
+
+Given an array A of size N where the array elements contain values from 1 to N with duplicates, 
+the task is to find the total number of subarrays that start and end with the same element.
+Examples: 
+Input: A[] = {1, 2, 1, 5, 2} 
+Output: 7 
+Explanation: 
+Total 7 sub-array of the given array are {1}, {2}, {1}, {5}, {2}, {1, 2, 1} and {2, 1, 5, 2} are start and end with same element.
+
+Approach
+I have implemented the brute force solution which is:
+For each element in the array, if it is present at a different index as well,
+we will increase our result by 1. Also, all 1-size subarray are part of counted
+in the result. Therefore, add N to the result.
+
+
+Code:
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        
+        int arr[n];
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+        }
+        
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            cnt++;
+            int curr=arr[i];
+            for(int j=i+1;j<n;j++){
+                if(arr[j]==curr){
+                    cnt++;
+                }
+            }
+        }
+        cout<<cnt;
+    }
+}
