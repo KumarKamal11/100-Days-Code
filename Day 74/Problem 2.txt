@@ -1,0 +1,30 @@
+Day 74: Problem-2
+
+Given the array nums, for each nums[i] find out how many numbers in the array
+are smaller than it. That is, for each nums[i] you have to count the number of
+valid j's such that j != i and nums[j] < nums[i].
+Return the answer in an array.
+
+Approach:
+This problem ask for finding the count of numbers smaller than the current number in
+the given array. My initial thought is to iterate through each number in the array 
+and count the numbers smaller than it.The approach involves iterating through each number 
+in the array. For each number, iterate through the array again to count the numbers 
+smaller than it. Maintain a count variable for this purpose. Finally, push the count into 
+a result array for each number.
+
+Code:
+ vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+      vector<int>ans;
+      for(int i=0;i<nums.size();i++){
+        int cnt=0;
+        for(int j=0;j<nums.size();j++){
+            if(nums[j]<nums[i]){
+                cnt++;
+            }
+        }
+        ans.push_back(cnt);
+      }
+     return ans;
+        
+    }
