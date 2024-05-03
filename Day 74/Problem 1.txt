@@ -1,0 +1,36 @@
+Day 74: Problem-1
+
+Given an integer array nums containing distinct positive integers, find 
+and return any number from the array that is neither the minimum nor the 
+maximum value in the array, or -1 if there is no such number.
+
+Approach:
+
+The simple Approach is that we have to return any of the element except 
+the maximum and minimum. So just find the maximum and minimum number and 
+at time of returning the ans we have to make sure that the number should
+not be equal to max and min.
+
+Code:
+int findNonMinOrMax(vector<int>& nums) {
+        int min=INT_MAX;
+        int max=INT_MIN;
+        int ans=0;
+        if(nums.size()<=2){
+            return -1;
+        }
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>max){
+                max=nums[i];
+            }
+            if(nums[i]<min){
+                min=nums[i];
+            }
+        }
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]!=max && nums[i]!=min){
+               ans=nums[i];
+            }
+        }
+        return ans;
+    }
