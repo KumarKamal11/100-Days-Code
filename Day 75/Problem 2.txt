@@ -1,0 +1,50 @@
+Day 75: Problem-2
+
+We are given a list of numbers we need to return the maximum 
+difference between smallest and largest number.
+
+Note: Smallest number should be before largest number.
+
+
+Approach
+
+The algorithm initializes maxdiff and maxnum. It iterates through each list element,
+updating maxnum if a larger number is found. Then, it calculates the difference between
+maxnum and the current element. If this difference exceeds the maxdiff, it replaces it. 
+Finally, maxdiff is returned as the maximum difference.
+
+
+Code:
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int t;
+    cin>>t;
+    
+    while(t--){
+        int n;
+        cin>>n;
+        
+        int arr[n];
+        
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+        }
+        
+        int maxdiff=INT_MIN;
+        int maxnum=INT_MIN;
+        
+        for(int i=0;i<n;i++){
+            if(arr[i]>maxnum){
+                maxnum=arr[i];
+            }
+            int diff=maxnum-arr[i];
+            if(diff>maxdiff){
+                maxdiff=diff;
+            }
+        }
+        cout<<maxdiff;
+    }
+    return 0;
+}
