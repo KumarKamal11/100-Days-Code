@@ -1,0 +1,44 @@
+Day 75: Problem-1
+
+Check a number whether it is divisble by 9.
+
+Input
+The input format should be in string.The user receive data
+in the form of characters from a stream, where each character 
+represents a number. If the character "0" is encountered, the
+data stream should terminate. If any character other than digits
+ 0-9 is encountered, it should not be added to the string. After
+forming the string, it needs to be converted into a number and 
+checked if it is divisible by 9. 
+
+
+Approach
+
+Just Simple write code According to Problem statement.
+
+Code:
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    char c;
+    string s;
+    
+    while(cin>>c){
+        if(c=='0'){
+            break;
+        }
+        else if(c>'0' && c<='9'){
+            s+=c;
+        }
+    }
+    
+    int num=stoi(s);
+    if(num%9==0){
+        cout<<"Num"<<" "<<num<<" "<<"is divisible by 9"<<endl;
+    }
+    else{
+        cout<<"Num"<<" "<<num<<" "<<"is not divisible by 9"<<endl;
+    }
+    return 0;
+}
