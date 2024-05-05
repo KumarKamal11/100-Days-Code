@@ -1,0 +1,39 @@
+Day 76: Problem-1
+
+You are given a 0-indexed integer array nums and an integer pivot. Rearrange 
+nums such that the following conditions are satisfied:
+Every element less than pivot appears before every element greater than pivot.
+Every element equal to pivot appears in between the elements less than and greater than pivot.
+The relative order of the elements less than pivot and the elements greater than pivot is maintained.
+
+Approach
+
+I have written the brute force approach,Which takes o(N) space the simple logic is 
+that we insert the elements smaller than the pivot element in the first loop then 
+insert the n number of times the pivot element.After that in the last for loop we 
+insert elements that are greater than pivot.
+
+Code:
+vector<int> pivotArray(vector<int>& nums, int pivot) {
+        int cntPiv=0;
+        vector<int>left;
+        vector<int>right;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==pivot){
+                cntPiv++;
+            }
+            if(nums[i]>pivot){
+                right.push_back(nums[i]);
+            }
+            if(nums[i]<pivot){
+                left.push_back(nums[i]);
+            }
+        }
+        for(int i=0;i<cntPiv;i++){
+            left.push_back(pivot);
+        }
+        for(auto it:right){
+            left.push_back(it);
+        }
+        return left;
+    }
