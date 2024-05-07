@@ -1,0 +1,38 @@
+Day 77: Problem-1
+
+You are given an array arr[] of size n. Find the total count of sub-arrays having their sum equal to 0.
+
+Input:
+n = 6
+arr[] = {0,0,5,5,0,0}
+Output: 6
+Explanation: The 6 subarrays are 
+[0], [0], [0], [0], [0,0], and [0,0].
+
+Approach:
+
+The intution behind the code is that we store the accumulative sum
+in a map.If the accumulative sum already present in the map than it
+means the sum of the element is zero(i.e subarray is present).Basically
+if an element is repeated as sum, then somewhere there must be a subarray
+that adds 0 value to the sum. Hence, we increment count by that frequency.
+
+Code:
+  long long int findSubarray(vector<long long int> &arr, int n ) {
+        long long int total=0;
+        unordered_map<long long int,long long int>mp;
+        long long int prefixsum=0;
+        mp[0]=1;
+        for(int i=0;i<n;i++){
+            prefixsum+=arr[i];
+            
+            if(mp.count(prefixsum)){
+                total+=mp[prefixsum];
+                mp[prefixsum]++;
+            }
+            else{
+                mp[prefixsum]++;
+            }
+        }
+        return total;
+    }
