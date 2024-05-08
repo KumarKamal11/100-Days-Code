@@ -1,0 +1,34 @@
+Day 78: Problem-1
+
+Given an array of integers nums and an integer k, return the total number
+of subarrays whose sum equals to k. A subarray is a contiguous non-empty 
+sequence of elements within an array.
+
+Input: nums = [1,1,1], k = 2
+Output: 2
+
+Approach:
+
+The Approach behind the problem of finding subarrays in an array with a sum equal
+to a given value k. It iterates through the array, maintaining a running sum
+and a hashmap to store prefix sums and their frequencies. At each step, it 
+checks if the difference between the current sum and k exists in the hashmap, 
+indicating a valid subarray. It then updates the answer with the frequency of 
+such differences. Finally, it returns the total count of valid subarrays.
+
+Code:
+  int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int>mp;
+        mp[0]=1;
+        int ans=0;
+        int currsum=0;
+        for(int i=0;i<nums.size();i++){
+            currsum+=nums[i];
+            int rightsum=currsum-k;
+            if(mp.find(rightsum)!=mp.end()){
+                ans+=mp[rightsum];
+            }
+            mp[currsum]++;
+        }
+        return ans;
+    }
