@@ -1,0 +1,38 @@
+Day 80: Problem-1
+
+You are given an n x n integer matrix grid.
+Generate an integer matrix maxLocal of size
+(n - 2) x (n - 2) such that: maxLocal[i][j]
+is equal to the largest value of the 3 x 3 
+matrix in grid centered around row i + 1 and
+column j + 1. In other words, we want to find 
+the largest value in every contiguous 3 x 3 
+matrix in grid. Return the generated matrix.
+
+Approach:
+
+To find the largest local values in the given grid, we can iterate through 
+each cell and consider the 3x3 subgrid centered at that cell. Within this 
+subgrid, we find the maximum value and store it in the result matrix.
+
+Code:
+  int localmax(vector<vector<int>>&mat,int row,int col){
+    int maxval=INT_MIN;
+    for(int i=row; i<=row+2; i++){
+        for(int j=col;j<=col+2;j++){
+            maxval=max(maxval,mat[i][j]);
+        }
+    }
+   return maxval;
+   }
+    
+    vector<vector<int>> largestLocal(vector<vector<int>>& grid) {
+    int n=grid.size();    
+    vector<vector<int>>mat(n-2,vector<int>(n-2));
+    for(int i=0;i<n-2;i++){
+        for(int j=0;j<n-2;j++){
+            mat[i][j]=localmax(grid,i,j);
+        }
+    }
+    return mat;
+    }
