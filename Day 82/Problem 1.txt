@@ -1,0 +1,45 @@
+Day 82: Problem-1
+
+Given two sorted arrays nums1 and nums2 of size m and n respectively,
+return the median of the two sorted arrays.
+
+Approach:
+To find the median of two sorted arrays, we can merge the arrays into a single 
+sorted array and then find the median based on the size of the merged array.
+
+Code:
+   double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int size1 = nums1.size();
+        int size2 = nums2.size();
+        int total = size1 + size2;
+        int medianIdx = total / 2;
+
+        vector<int> newVector;
+        int idx1 = 0, idx2 = 0;
+
+        while (idx1 < size1 && idx2 < size2) {
+        if (nums1[idx1] <= nums2[idx2]) {
+        newVector.push_back(nums1[idx1]);
+        idx1++;
+        } else {
+        newVector.push_back(nums2[idx2]);
+        idx2++;
+         }
+    }
+    while (idx1 < size1) {
+        newVector.push_back(nums1[idx1]);
+        idx1++;
+    }
+
+    while (idx2 < size2) {
+        newVector.push_back(nums2[idx2]);
+        idx2++;
+    }
+
+   if (total % 2 == 0) {
+    return (newVector[medianIdx - 1] + newVector[medianIdx]) / 2.0;
+   } else {
+    return newVector[medianIdx];
+   }
+
+}
