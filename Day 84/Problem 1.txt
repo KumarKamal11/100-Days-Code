@@ -1,0 +1,38 @@
+Day 84: Problem-1
+
+Find the sum of unique elements in an array.
+
+Approach:
+
+I have used map to solve this question. The simple 
+approach is to store all the element in the map and
+calculate the sum of elements which occurs single 
+times i.e(it.second==1).
+
+Code:
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+int t;
+cin>>t;
+while(t--){
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+  cin>>arr[i];
+  }
+  int sum=0;
+  unordered_map<int,int>mp;
+  for(int i=0;i<n;i++){
+  mp[arr[i]]++;
+  }
+  for(auto it:mp){
+  if(it.second==1){
+  sum+=it.first;
+   }
+  }
+cout<<sum;
+}
+return 0;
+}
