@@ -1,0 +1,46 @@
+Day 88: Problem-1
+
+You are given a 0-indexed two-dimensional integer array nums.
+Return the largest prime number that lies on at least one of 
+the diagonals of nums. In case, no prime is present on any of 
+the diagonals, return 0.
+
+Approach:
+
+The simple Approach is to find the prime number in diagonal
+and anti diagonal. At the end we return the maximum between 
+the prime number which is present in diagonal and anti-diag
+onal.
+
+Code:
+bool prime(int n){
+     if(n<=1){
+        return false;
+     }
+     for(int i=2;i*i<=n;i++){
+        if(n%i==0){
+         return false;
+        }
+       }
+       return true;
+    }
+    int diagonalPrime(vector<vector<int>>& nums) {
+        long long maxi=0;
+        int n=nums.size();
+        int m=nums[0].size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(i==j and prime(nums[i][j])){
+                    if(nums[i][j]>maxi){
+                        maxi=nums[i][j];
+                    }
+                }
+                    if(i+j==nums.size()-1 and prime(nums[i][j])){
+                        if(nums[i][j]>maxi){
+                          maxi=nums[i][j];
+                    }
+                }
+            }
+        }
+        return maxi;
+    }
