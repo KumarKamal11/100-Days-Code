@@ -1,0 +1,36 @@
+Day 89: Problem-1
+
+Given two strings ransomNote and magazine, return true if
+ransomNote can be constructed by using the letters from 
+magazine and false otherwise.Each letter in magazine can 
+only be used once in ransomNote.
+
+Approach:
+
+We can solve this question by using Hashmap.
+
+1.Create a HashMap called dictionary to store the character counts in the magazine.
+2.Iterate through each character in the magazine string.
+3.Increment count of charcters which are present in string.
+4.Iterate through each character in the ransom note string.
+5.Check if the character is present in the dictionary and its count is greater than 0.
+6.If both conditions are satisfied, decrement the count of the character in the dictionary.
+7.If a character is not present in the dictionary or its count is 0, return false.
+8. If all characters in the ransom note have been checked successfully, return true.
+
+Code:
+  bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char,int> freq;
+        for(char c : magazine){
+        freq[c]++;
+        }
+        for(char c:ransomNote) {
+            if(freq[c]==0){
+            return false;
+            }
+            else{
+            freq[c]--;
+            }
+        }
+        return true;
+    }
