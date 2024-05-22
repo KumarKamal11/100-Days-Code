@@ -1,0 +1,30 @@
+Day 90: Problem-1
+
+Given an array of integers arr, a lucky integer is an integer that 
+has a frequency in the array equal to its value.Return the largest 
+lucky integer in the array. If there is no lucky integer return -1.
+
+Approach:
+
+ The simple Approach is that we need to find the element in the given array whose frequency is equal
+ to its value. So we can simply create a hashMap to store the elements and their respective frequency.
+
+Code:
+ int findLucky(vector<int>& arr) {
+         unordered_map<int,int>m;
+        for(int i=0;i<arr.size();i++)
+        {
+            m[arr[i]]++;
+        }
+        int ans=-1;
+        for(auto it:m)
+        {
+            if(it.first==it.second)
+            {
+                ans=max(ans,it.first);
+                
+            }
+        }
+        return ans;
+
+    }
