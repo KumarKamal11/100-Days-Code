@@ -1,0 +1,25 @@
+Day 90: Problem-2
+
+You are given a 0-indexed string num of length n consisting of digits.
+Return true if for every index i in the range 0 <= i < n, the digit i 
+occurs num[i] times in num, otherwise return false.
+
+Approach:
+
+The Approach behind solving this problem is to traverse the given 
+number's string representation and verify if the count of each digit
+matches the digit itself, ensuring each digit's frequency conforms 
+to its value.
+
+Code:
+bool digitCount(string num) {
+    vector<int> v(10,0);
+    for (int i = 0; i < num.size(); i++)
+        v[num[i] - '0']++;
+
+    for (int i = 0; i < num.size(); i++)
+        if (num[i] - '0' != v[i])
+           return false;
+
+    return true;
+    }
