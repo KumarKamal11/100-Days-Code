@@ -1,0 +1,38 @@
+Day 93: Problem-1
+
+Given a string s, reverse the string according to the following rules:
+All the characters that are not English letters remain in the same position.
+All the English letters (lowercase or uppercase) should be reversed.
+Return s after reversing it.
+
+Approach:
+
+Compare two characters if they are Alphabetic than swap otherwise not.
+We can use a two-pointer approach, starting from both ends of the string. 
+If both characters at the low and high pointers are letters, we swap them.
+If the character at the low pointer is not a letter, we increment the low
+pointer, and if the character at the high pointer is not a letter, we 
+decrement the high pointer. This way, we continue swapping letters until 
+the low pointer surpasses the high pointer.
+
+
+Code:
+
+ string reverseOnlyLetters(string st) {
+        int s = 0;
+        int e = st.length()-1;
+        while(e>=s){
+            if(isalpha(st[s]) && isalpha(st[e])){
+                swap(st[e],st[s]);
+                s++;
+                e--;
+            }
+            else if (!isalpha(st[s])){
+                s++;
+            }
+            else{
+                e--;
+            }
+        }
+        return st;
+    }
