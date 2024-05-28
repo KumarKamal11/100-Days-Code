@@ -1,0 +1,33 @@
+Day 94: Problem-1
+
+You are given two strings s and t such that every character occurs at most once in s and t is a permutation of s.
+The permutation difference between s and t is defined as the sum of the absolute difference between the index of 
+the occurrence of each character in s and the index of the occurrence of the same character in t. Return the perm
+-utation difference between s and t.
+
+Approach:
+
+The first and very simple Approach is We iterate through each character in the first string and find its position
+in the second string. Then, we calculate the absolute difference in positions and accumulate it to find the total 
+difference.
+
+But this Approach takes o(N^2) time in worst case. So another Approach is using Hashmap.Simply we use Hashmap to store
+the index of string s for each character.After that iterate over string t and take difference of index and update answer
+after each iteration.
+
+This Approach will reduce the time complexity from o(N^2) to O(N).
+
+Code:
+
+ int findPermutationDifference(string s, string t) {
+        unordered_map<char,int>mp;
+        int ans=0;
+        for(int i=0;i<s.size();i++){
+            mp[s[i]]=i;
+        }
+        for(int i=0;i<t.size();i++){
+            ans+=abs(i-mp[t[i]]);
+        }
+        return ans;
+    }
+ 
