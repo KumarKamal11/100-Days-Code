@@ -1,0 +1,35 @@
+Day 97: Problem-1
+
+Given an array of strings strs, group the anagrams together. 
+You can return the answer in any order. An Anagram is a word 
+or phrase formed by rearranging the letters of a different 
+word or phrase, typically using all the original letters 
+exactly once.
+
+ 
+Approach:
+The intuition behind solving the question is just group words
+that are anagrams of each other together.
+
+Iterate through each string in the input vector strs. For each string,
+create a temporary string temp by sorting its characters. Use temp as 
+a key in the unordered map mp and append the original string to the 
+corresponding vector in the map. After processing all strings, iterate 
+through the unordered map mp and push each vector of anagrams into the 
+result vector ans. Finally, return the grouped anagrams stored in ans.
+
+Code:
+
+ vector<vector<string>>ans;
+    unordered_map< string,vector<string>>mp;
+
+    for(int i=0;i<strs.size();i++){
+        string temp=strs[i];
+        sort(temp.begin(),temp.end());
+        mp[temp].push_back(strs[i]);
+    }
+       for(auto it:mp){
+        ans.push_back(it.second);
+    }
+       return ans;
+    }
